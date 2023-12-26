@@ -231,7 +231,8 @@ public class LoopFor {
 
 
 
-        // 슈의 갯수는?
+        // 슈의 갯수는? 
+        // 다 짜놓고 syusyu.substring(i,i+1) 인데 example.substring(i,i+1)이라고 써놔서 오래걸림
         String syusyu = "슈슈슈슈슈슈슛슈슈슈슛";
 
         // syusyu에서 "슈"가 몇글자 들어가있는지 세어보기
