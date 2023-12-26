@@ -229,23 +229,28 @@ public class LoopFor {
 
         System.out.println("\n==============================\n");
 
+
+
         // 슈의 갯수는?
         String syusyu = "슈슈슈슈슈슈슛슈슈슈슛";
 
-
         // syusyu에서 "슈"가 몇글자 들어가있는지 세어보기
-
-        int total = 0;
+        int count = 0;
 
         for (int i = 0; i < syusyu.length(); i++){
-            String word = example.substring(i,i+1);
-
+            String word = syusyu.substring(i,i+1);
             if (word.equals("슈")) {
-                total += 1;
-
+                count += 1;
             }
         }
-        System.out.println(total);
+        System.out.println(count);
+
+
+
+
+
+
+
 
 
 
