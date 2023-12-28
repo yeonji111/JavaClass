@@ -24,15 +24,14 @@ public class Submit03 {
 //                System.out.println(stars + blank); // 미친 트리 5개?
 
 //        // 궁리 3
-        String stars = "*****";
-
-        for (int i = 0; i < stars.length(); i++){
-            for (int j = i; j > 0; j--){ // 1. i = j = 0 인 경우
-                System.out.print(" ");
-                System.out.println(stars.substring(stars.length(),(stars.length()-i)));
-            }
-
-
-        }
+//        String stars = "*****";
+//
+//        for (int i = 0; i < stars.length(); i++){
+//            for (int j = i; j > 0; j--){ // 1. i = j = 0 인 경우
+//                System.out.print(" ");
+//                System.out.println(stars.substring(stars.length(),(stars.length()-i)));
+//            }
+//
+//
+//        }
     }
-}
