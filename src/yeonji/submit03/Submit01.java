@@ -2,17 +2,23 @@ package yeonji.submit03;
 
 public class Submit01 {
     public static void main(String[] args) {
-        int fac = 15; // 15 팩토리얼 구할거니까 15
-        int num = 1; // 초기값 설정
+        int num = 10;
 
-
-        for (int i = 15; i > 0; i--){
-            fac = fac + (fac * i);
-
-            System.out.println(fac);
+        int factorial = 1;
+        for (int i = num; i > 0; i--){
+            factorial = factorial * i;
         }
+        System.out.println(factorial);
 
-            }
+        System.out.println("\n=================\n");
+        num = 15;
+
+        long factorialTwo = 1l;
+        for (int i = num; i > 0; i--){
+            factorialTwo = factorialTwo * i;
         }
+        System.out.println(factorialTwo);
 
+    }
+}
 
