@@ -104,7 +104,8 @@ public class LoopWhile {
             if (command == 1) {
                 // TODO 공격
 
-                while (true) {
+                // 바깥 while문에 outer라는 네임태그 부여
+               outer: while (true) {
                     System.out.println("공격 방법 선택");
                     System.out.println("1. 백만볼트  | 2. 전광석화 | 3. 취소");
                     System.out.println(">>>>");
@@ -122,7 +123,13 @@ public class LoopWhile {
                     System.out.println("파이리 체력: " + hp);  // attack에 1,2 둘 다 중복되는 코드이므로 바깥에 선언
                     if (hp <= 0) {
                         System.out.println("전투에서 승리");
-                        break;
+
+                        // 프로그램 종료
+                        System.exit(0);
+
+
+                        // 외부 while문에 네임태그 설정
+//                        break outer; // outer라는 이름을 가진 while문 즉시종료
 
                     } else if (attack == 3) {
                         System.out.println("전투를 취소한다.");
