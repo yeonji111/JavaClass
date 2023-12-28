@@ -3,6 +3,14 @@ package yeonji.submit04;
 import java.util.Scanner;
 
 public class SubmitVer2 {
+
+
+    /*
+
+     엘리베이터 A,B문제 푸는데 메모장처럼 쓴 코드가 들어가있는 클래스
+    (정답 아님)
+
+     */
     public static void main(String[] args) {
 
         int elevatorA = 10;
