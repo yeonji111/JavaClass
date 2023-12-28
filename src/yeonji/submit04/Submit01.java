@@ -33,7 +33,7 @@ public class Submit01 {
                     System.out.println("승강기 B가"+ goFloor + "층으로 이동하였습니다.");
                 }else if (comEleB > 5){
                     System.out.println("승강기 A가" + goFloor +"층으로 이동하였습니다.");
-                }else if (Math.abs(elevatorA-goFloor) == Math.abs(goFloor-elevatorB)){
+                }else if (Math.abs(elevatorA-goFloor) == Math.abs(elevatorB-goFloor)){
 
                     // 10-goFloor가 적은쪽이 움직여 (높은층에 있는 승강기)
                     System.out.println("승강기 A가" + (goFloor)+"층으로 이동하였습니다.");
