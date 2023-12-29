@@ -67,11 +67,11 @@ public class SubmitSsam {
 //        System.out.println(stars.substring(0,2)); // i = 3, 2
 //        System.out.println(stars.substring(0,1)); // i = 4, 1
 
-//        트리 1번 버전
+//        트리 1번 버전(오른쪽에서 하나씩 *을 줄여나가는 방식)
         for (int i = 0; i < 5; i++){
             System.out.println(stars.substring(0,5-i));
 
-//        트리 2번 버전
+//        트리 2번 버전(왼쪽에서 하나씩 *을 줄여나가는 방식)
         }
         for (int i = 0; i < 5; i++) {
             System.out.println(stars.substring(i));

@@ -403,10 +403,10 @@ public class LoopFor {
         //   ***** // 공백 3, 별 5 - i가 2일때 별 5개 // 3
         //  ******* // 공백 2, 별 7 - i가 3일때 별 7개  //4
         // ********* //  공백 1, 별 9 - i가 4일때 별 9개 //5
-
-        for (int i = 0; i < 5; i++){
+        int floor = 4;
+        for (int i = 0; i < floor; i++){
             String blank ="";
-            for (int j = 0; j < (5-i); j++){
+            for (int j = 0; j < (floor-i); j++){
                 blank += " ";
             }
 
