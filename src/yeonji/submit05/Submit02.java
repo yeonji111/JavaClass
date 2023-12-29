@@ -16,8 +16,8 @@ public class Submit02 {
             reverse += example.substring(i-1,i);
 
         }
-        System.out.println(reverse);
-        return example;
+//        System.out.println(reverse);
+        return reverse;
     }
 
 
