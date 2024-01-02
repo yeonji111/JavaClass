@@ -9,11 +9,11 @@ public class Submit02 {
 
     }
 
-    public static String reverseStr(String example){
+    public static String reverseStr(String example) {
         String reverse = "";
-        for(int i = example.length(); i > 0; i--){
+        for (int i = example.length(); i > 0; i--) {
 
-            reverse += example.substring(i-1,i);
+            reverse += example.substring(i - 1, i);
 
         }
 //        System.out.println(reverse);
@@ -22,3 +22,4 @@ public class Submit02 {
 
 
 }
+

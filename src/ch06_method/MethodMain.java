@@ -1,5 +1,7 @@
 package ch06_method;
 
+import java.util.Scanner;
+
 public class MethodMain {
 
     public static void main(String[] args) {
@@ -85,7 +87,7 @@ public class MethodMain {
 
         // Math.abs(): 절대값을 리턴해주는 함수
         int rst = Math.abs(-10);
-        System.out.println("Math.abs를 사용해서 절대값을 리턴한 결과 " +rst);
+        System.out.println("Math.abs를 사용해서 절대값을 리턴한 결과 " + rst);
 
         // 함수명 : myAbs
         // 파라미터타입 : int
@@ -96,6 +98,7 @@ public class MethodMain {
         System.out.println(rst);
 
         System.out.println("\n===========================\n");
+
 
         // makeCard() 메소드 만들기
         makeCard("박연지", 90, 87, 79);
@@ -111,9 +114,140 @@ public class MethodMain {
         // =================
         // 위와 같이 콘솔창에 성적표가 출력되도록 메소드 만들기
 
+        System.out.println("\n=========================\n");
+
+        //LooopWhile의 포켓몬을 메소드로 만들기
+        playPokemon();
+
+        System.out.println("\n=========================\n");
+
+
+        // 팩토리얼 메소드화
+        // 어느 파일에서 했더라.. ? [단축키 Ctrl + Shift + F]
+        System.out.println("팩토리얼 메소드화");
+        System.out.println(factorial(5));
+        System.out.println(factorial(3));
+
+        System.out.println("\n=====================\n");
+        // 재귀함수
+        // 메소드 내에서 해당 메소드를 실행하는 케이스
+
+        // 콘솔창에 1부터 n까지 출력하는 메소드
+        printNum(10);
+
+        recPrintNum(10);
+
+        System.out.println(recFactorial(5));
+        recFactorial(5);
+
 
     } // main 메소드 끝
 
+
+    // 재귀함수로 팩토리얼 메소드 만들기
+    public static long recFactorial(int n){
+
+        if (n <= 1){
+            return 1;
+        }
+        return n * recFactorial(n-1);
+        // return 5 * recFactorial(4)
+        // return 5 * 4 * recFacotorial(3)
+        // return 5 * 4 * 3 * recFactorial(2)
+        // return 5 * 4 * 3 * 2 * recFactorial(1)
+        // return 5 * 4 * 3 * 2 * 1(if문에 n이 1이거나 1보다 작으면 1을 리턴하기로 했으므로 1을 리턴 후 종료)
+    }
+
+    public static void recPrintNum(int n){
+        System.out.println(n);
+
+        if(n <= 1){
+            return;
+        }
+
+        // 자기자신을 호출(=재귀함수)
+        // 무한 반복 실행을 주의해야한다.
+        recPrintNum(n-1);
+    }
+
+
+
+    // printNum 메소드 만들기
+    public static void printNum(int n){
+        for (int i = 1; i <= n; i++){
+            System.out.println(i);
+        }
+    }
+
+    public static void playPokemon() {
+        Scanner scan = new Scanner(System.in);
+        int hp = 100; // 파이리의 체력
+
+
+        while (true) {
+            System.out.println("야생의 파이리를 만났다");
+            System.out.println("행동을 선택해주세요.");
+            System.out.println("1. 공격 | 2. 도망");
+            System.out.println(">>>>>>>>>");
+
+            int command = Integer.parseInt(scan.nextLine());
+
+
+            if (command == 1) {
+                // TODO 공격
+
+                // 바깥 while문에 outer라는 네임태그 부여
+                outer:
+                while (true) {
+                    System.out.println("공격 방법 선택");
+                    System.out.println("1. 백만볼트  | 2. 전광석화 | 3. 취소");
+                    System.out.println(">>>>");
+
+                    int attack = Integer.parseInt(scan.nextLine());
+                    if (attack == 1) {
+                        System.out.println("피카츄 백만볼트");
+                        hp -= 40;
+
+                    } else if (attack == 2) {
+                        System.out.println("피카츄 전광석화");
+                        hp -= 20;
+
+                    }
+                    System.out.println("파이리 체력: " + hp);  // attack에 1,2 둘 다 중복되는 코드이므로 바깥에 선언
+                    if (hp <= 0) {
+                        System.out.println("전투에서 승리");
+
+                        // 프로그램 종료
+
+                        // 리턴 타입이 void 없더라도
+                        // return은 사용가능하다.
+                        // 메소드 내에서 return이 실행되면
+                        // 해당 메소드는 즉시 종료된다.
+
+                        return;
+
+
+                        // 외부 while문에 네임태그 설정
+//                        break outer; // outer라는 이름을 가진 while문 즉시종료
+
+                    } else if (attack == 3) {
+                        System.out.println("전투를 취소한다.");
+                        // 가까운 반복문 1개를 즉시 종료
+                        break; // 내부 공격 while문만 종료된다.
+                    }
+                }
+            } else if (command == 2) {
+                //  도망
+                System.out.println("도망쳤습니다");
+                break;
+
+
+            } else {
+                System.out.println("잘못 입력하셨습니다.");
+            }
+        }
+
+    }
     // 메소드 선언
     // public : 접근 제어자
     // static : 정적 메소드 선언
@@ -184,34 +318,35 @@ public class MethodMain {
     //(평균이 90점 이상 A, 80점 이상 B, 그 외 C)
 
 
-    public static void makeCard(String name, int kor, int eng, int math){
+    public static void makeCard(String name, int kor, int eng, int math) {
         System.out.println("\n===================\n");
-        System.out.println("이름: "+name);
+        System.out.println("이름: " + name);
         System.out.println("국어: " + kor);
         System.out.println("영어: " + eng);
         System.out.println("수학: " + math);
 
-        double scoreAvg = (double)(kor+eng+math)/3;
+        double scoreAvg = (double) (kor + eng + math) / 3;
 
         // scoreAvg를 소수 셋째자리에서 반올림하여 소수 둘째자리로 만들기
         // Math.round() 는 소수 첫째자리에서 반올림한 정수값 리턴 10.3 -> 10
         // 우리만의 반올림 메소드 myRound()를 만들어보자
         scoreAvg = myRound(scoreAvg, 2);
-        System.out.println("평균: "+ scoreAvg);
+        System.out.println("평균: " + scoreAvg);
 
         String grade = "";
         if (scoreAvg >= 90) {
-           grade = "A";
-        } else if (scoreAvg >=80) {
+            grade = "A";
+        } else if (scoreAvg >= 80) {
             grade = "B";
         } else grade = "C";
-        System.out.println("등급: "+ grade);
+        System.out.println("등급: " + grade);
 
         System.out.println("\n======================\n");
 
     }
+
     // 반올림 메소드 만들기
-    public static double myRound(double num, int n){ // double타입의 원본 (실수), int타입의 자릿수 (정수)
+    public static double myRound(double num, int n) { // double타입의 원본 (실수), int타입의 자릿수 (정수)
         // Math.round()은 소수 첫째자리에서 반올림한 정수 리턴
         // 3.141592
         // Math.round(3.141592) -> 3 리턴
@@ -240,5 +375,18 @@ public class MethodMain {
         return (double) Math.round(num * pow) / pow;
     }
 
+    // 팩토리얼 메소드화
+    public static long factorial(int n){
+        int num = n;
+        long factorial = 1;
+        for (int i = num; i > 0; i--){
+            factorial = factorial * i;
+        }
+        return factorial;
+    }
+
 
 }
+
+
+

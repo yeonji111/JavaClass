@@ -2,9 +2,9 @@ package yeonji.submit05;
 
 public class Submit01 {
     public static void main(String[] args) {
-        makeTree(5);
-        makeTree(7);
-    }
+    makeTree(5);
+    makeTree(7);
+}
 
     public static void makeTree(int n) {
         int floor = n;
