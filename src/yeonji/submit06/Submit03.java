@@ -17,8 +17,8 @@ public class Submit03 {
 
     } //(int) (Math.random() * 45) + 1) 1~45 로또 번호 랜덤 생성
     public static int[] makeLotto(int n){
-        int[] myLotto = new int[n]; // 배열 생성
-        for (int i = 0; i < n; i++) {
+        int[] myLotto = new int[n]; // n개 짜리 배열(myLotto) 생성
+        for (int i = 0; i < n; i++) { // myLotto 인덱스에 숫자 채우기
             myLotto[i] = (int) (Math.random() * 45) + 1;
 //            System.out.println(myLotto[i]);
         }
