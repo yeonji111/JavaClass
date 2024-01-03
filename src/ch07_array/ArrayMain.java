@@ -362,7 +362,67 @@ public class ArrayMain {
 
         System.out.println("\n==========================\n");
 
-        // 알고리즘을 이용한 정렬
+        // 알고리즘을 이용한 정렬 (버블 정렬)
+        for (int j = 0; j < numberArray.length -1; j++) { // 한 사이클 반복하는 for문을 length -1만큼 반복
+            for (int i = 0; i < numberArray.length - 1-j; i++) { // 한 사이클 반복하는 for문
+                if (numberArray[i] > numberArray[i + 1]) {
+                    int tmp = numberArray[i];
+                    numberArray[i] = numberArray[i + 1];
+                    numberArray[i + 1] = tmp;
+
+                }
+            }
+        }
+        printArray(numberArray);
+
+
+
+        // numberArray에 대해 버블정렬을 이용하여 내림차순 정렬 하기
+
+        for (int j = 0; j < numberArray.length -1; j++) { // 한 사이클 반복하는 for문을 length -1만큼 반복
+            for (int i = 0; i < numberArray.length - 1-j; i++) { // 한 사이클 반복하는 for문
+                if (numberArray[i] < numberArray[i + 1]) {
+                    int tmp = numberArray[i];
+                    numberArray[i] = numberArray[i + 1];
+                    numberArray[i + 1] = tmp;
+
+                }
+            }
+        }
+        printArray(numberArray);
+
+
+        System.out.println("\n==========================\n");
+
+        // 다차원 배열
+
+        // 일차원 배열
+        // 1 2 3
+        int[] oneDirArr = {1,2,3};
+
+        // 이차원 배열
+        // 1열  2열 3열(column=col)
+        // 1    2   3  1행(row)
+        // 4    5   6  2행
+        // 7    8   9  3행
+        int[][] twoDirArr = {  {1,2,3}, {4,5,6}, {7,8,9}  };
+
+        // 2행 {4,5,6} 꺼내기
+        int[] row2 = twoDirArr[1];
+        printArray(row2);
+
+        // 3행 2열의 8을 꺼내기
+        System.out.println(twoDirArr[2][1]);
+
+        // 3차원 배열
+        int[][][] threeDirArr = {  {  {1,2,3}, {4,5,6}, {7,8,9}  } ,
+                                {  {11,12,13}, {14,15,16}, {17,18,19}  } ,
+                                {  {21,22,23}, {24,25,26}, {27,28,29}  }    };
+
+        //threeDirArr 에서 '22' 꺼내기
+        System.out.println(threeDirArr[2][0][1]);
+
+
 
 
 
