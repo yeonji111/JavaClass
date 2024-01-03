@@ -1,5 +1,11 @@
 package ch07_array;
 
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.Base64.Encoder;
+import java.util.Base64.Decoder;
+import java.util.Collections;
+
 public class ArrayMain {
     public static void main(String[] args) {
         String samjang = "삼장";
@@ -185,8 +191,204 @@ public class ArrayMain {
         // PIN번호에 숫자만 기입했는지 체크
         // 비밀번호에 알파벳 소/대문자, 숫자, 특수문자 각 한 개 이상 들어갔는지 체크
 
+        System.out.println("\n===========================\n");
+
+        printArray(seoyugi);
+
+        // 배열의 복사
+        String[] sinSeoyugi = seoyugi;
+
+        printArray(sinSeoyugi);
+
+        sinSeoyugi[0] = "강호동";
+        sinSeoyugi[1] = "이수근";
+        printArray(sinSeoyugi);
+
+        printArray(seoyugi);
+
+        // @ 앞은 참조 타입 객체의 타입,
+        // @ 뒤는 메모리 주소의 해쉬코드를 16진수로 나타낸 것
+
+        System.out.println(seoyugi);    // [Ljava.lang.String;@776ec8df [String 타입 배열, 메모리 주소]
+        System.out.println(sinSeoyugi); // [Ljava.lang.String;@776ec8df [String 타입 배열, 메모리 주소]
+        System.out.println(intArray);   // [I@682a0b20 [Int 타입 배열, 메모리 주소]
+
+        // 해쉬코드(hashcode)
+        // 객체의 메모리 주소값에 해쉬를 적용한 코드
+        // 실제 메모리 주소 202호 -> 해쉬함수를 적용 -> 해쉬코드값
+        System.out.println(seoyugi.hashCode());    // 2003749087
+        System.out.println(sinSeoyugi.hashCode()); // 2003749087
+        // 10진수 16진수로 변환
+        System.out.println(Integer.toHexString(2003749087));
+
+        // 해쉬(Hash)
+        // 해쉬함수(암호화 알고리즘)를 이용해서
+        // 데이터를 암호화하는 기법
+
+        // Base64로 문자열 인코딩 (암호화 아님)
+        Encoder base64Encoder = Base64.getEncoder();
+        String password = "1q2w3e4";
+
+        // .getBytes()
+        // 해당 문자열을 byte 배열로 변환
+        byte[] byteArray = password.getBytes();
+
+        // byte 배열에 대해 인코딩
+        byte[] encodeArray = base64Encoder.encode(byteArray);
+
+        // byte 배열을 문자열로 변환
+        String encodeString = new String(encodeArray);
+        System.out.println(encodeString); // MXEydzNlNA==
+
+        // 인코딩된 문자열 디코딩
+        Decoder base64Decoder = Base64.getDecoder();
+        // 디코딩된 byte 배열 리턴
+        byte[] decodeArray = base64Decoder.decode(encodeString);
+        String decodeString = new String(decodeArray);
+        System.out.println(decodeString);
 
 
+        System.out.println("\n============================\n");
+
+        // 올바른 배열 복사
+        printArray(seoyugi);
+
+        String[] newSeoyugi = seoyugi.clone();
+        printArray(newSeoyugi);
+
+        newSeoyugi[2] = "은지원";
+        printArray(newSeoyugi);
+        printArray(seoyugi);
+
+        System.out.println(newSeoyugi); // @4f3f5b24 [메모리 주소]
+        System.out.println(seoyugi);    // @776ec8df [메모리 주소]
+
+        // clone 없이 배열 복사 (for문 사용)
+        // 1. seoyugi 와 같은 크기를 갖는 배열 만들기
+        String[] synSeoyugi = new String[seoyugi.length];
+
+        // 2. seoyugi의 각 인덱스 값을 synSeoyugi에 넣기
+        for (int i = 0; i < seoyugi.length; i++){
+            synSeoyugi[i] = seoyugi[i];
+        }
+        printArray(seoyugi);
+        printArray(synSeoyugi); // 똑같은 배열 복사한 결과 [강호동, 이수근, 서유기 사오정, 서유기 저팔계]
+
+        synSeoyugi[2] = "안재현";
+
+        printArray(seoyugi);
+        printArray(synSeoyugi); // 똑같은 배열을 복사해서 인덱스 2를 수정하니 [강호동, 이수근, 안재현, 서유기 저팔계] 리턴
+
+        // 숫자 배열
+        int[] numberArray ={11,2,56,65,89,21};
+
+        System.out.println(numberArray[0]); // 11
+        System.out.println(numberArray[1]); // 2
+
+        // 인덱스 0번과 인덱스 1번 값의 위치를 바꿔보기
+//        (내가 한 버전)
+//        int[] testArray = numberArray.clone();
+//
+//        testArray[0] = numberArray[1];
+//        testArray[1] = numberArray[0];
+//
+//        printArray(testArray);
+
+//        (선생님 버전)
+        int temp = numberArray[1]; // temp = 2
+        numberArray[1] = numberArray[0]; // numberArray[0] = 11, numberArray[1] = 11
+        numberArray[0] = temp;  // numberarray[0] = temp = 2 .... [2,11,56,65,89,21] 출력
+
+        // 자리 바꾸기 메소드화
+        printArray(numberArray);
+        swap(numberArray[2], numberArray[3]);
+        printArray(numberArray);
+
+        // 가끔 면접에서 묻는 문제
+        // Call by value와 Call by Reference 구분
+        // 기본타입 변수에 대해서는 Call by Value로 동작
+        // 참조타입 변수에 대해서는 Call by Reference로 동작
+        int a = 10;
+        int b = a;
+
+        a = 20;
+        System.out.println(b);
+
+
+
+        swap(a,b); // a: 20, b:10
+
+        System.out.println(a);
+        System.out.println(b);
+
+        printArray(numberArray); // [2, 11, 56, 65, 89, 21]
+        swap(numberArray, 2, 3); // 인덱스 2,3의 자리를 바꾸는 메소드 사용
+        printArray(numberArray); // [2, 11, 65, 56, 89, 21]
+
+
+        System.out.println("\n============= 정렬 ===============\n");
+
+        // 정렬(sort)
+        // 오름차순 정렬
+        // Arrays.sort(배열명)
+
+        Arrays.sort(numberArray);
+        printArray(numberArray);
+
+        // 내림차순 정렬
+        // 이 방법은 참조타입 객체를 담는 배열에 대해서만 가능한 방법
+        // numberArray는 int타입을 담고 있으므로 불가능
+
+      //  Arrays.sort(numberArray, Collections.reverseOrder());
+
+
+
+        // 오름차순을 이용한 내림차순 정렬
+        // 1. numberArray의 모든 요소에 -1을 곱함           {2,5,8} ->  -> {-2,-5,-8}
+        // 2. numberArray에 Arrays.sort 적용 (음수 활용)   {-2,-5,-8} -> {-8,-5,-2}
+        // 3. numberArray의 모든 요소에 -1을 곱함 (숫자를 원상복구) {-8,-5,-2} -> {8,5,2}
+
+        for (int i = 0; i < numberArray.length; i++){
+            numberArray[i] *= -1;
+        }  // 모든 요소에 *(-1)
+
+        Arrays.sort(numberArray); // 오름차순 정렬
+
+        for (int i = 0; i < numberArray.length; i++){
+            numberArray[i] *= -1;
+        } // 모든 요소에 *(-1)
+
+        printArray(numberArray);
+
+        System.out.println("\n==========================\n");
+
+        // 알고리즘을 이용한 정렬
+
+
+
+
+
+
+
+    }
+
+    // 배열 내 요소의 자리를 바꾸는 메소드
+    public static void swap(int[] array, int idxA, int idxB){
+        int temp = array[idxA];
+        array[idxA] = array[idxB];
+        array[idxB] = temp;
+
+    }
+
+
+
+
+
+    // 자리 바꾸기 메소드 만들기
+    public static void swap(int left, int right){
+        int temp = right;
+        right = left;
+        left = temp;
 
     }
 
