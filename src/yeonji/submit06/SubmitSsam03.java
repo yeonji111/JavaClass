@@ -6,12 +6,12 @@
 //    public static void main(String[] args) {
 //
 //        int[] lotto = new int[6]; // 0,0,0,0,0,0
+//                                  // lotto라는 6칸짜리 배열 만듦
 //
-//
-//        int rand = (int) (Math.random() * 10) + 1; // 5
-//
+//        int rand = (int) (Math.random() * 10) + 1; // 1~10까지 랜덤한 수를 rand에 담음
 //
 //        int idx = 0;
+//
 //        while (true) {
 //            int rand = (int) (Math.random() * 10) + 1;
 //
