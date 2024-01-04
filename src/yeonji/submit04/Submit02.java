@@ -2,7 +2,7 @@ package yeonji.submit04;
 
 import java.util.Scanner;
 
-public class SubmitVer2 {
+public class Submit02 {
 
 
     /*
