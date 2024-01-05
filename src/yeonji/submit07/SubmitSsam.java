@@ -108,5 +108,28 @@ public class SubmitSsam {
             }
         }
         System.out.println(bothWant);
+
+        ArrayList<String> wantAll = new ArrayList<>();
+
+        wantAll.addAll(wipeList);
+
+        System.out.println(husbList);
+        System.out.println(wantAll);
+
+        for ( String husb : husbList){
+
+            boolean isContain = false;
+
+            for ( String want : wantAll){
+                if (husb.equals(want)){
+                    isContain = true;
+                }
+            }
+            if(isContain == false){
+                wantAll.add(husb);
+            }
+        }
+        System.out.println(wantAll);
+
     }
 }

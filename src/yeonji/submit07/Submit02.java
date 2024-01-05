@@ -28,18 +28,22 @@ public class Submit02 {
 
 // 남편,아내 쇼핑목록 합집합
 
-        ArrayList<String>shoArr = new ArrayList<>();
+        ArrayList<String>shoArr = new ArrayList<>(); // 빈리스트
         ArrayList<String>newArr = new ArrayList<>();
-        newArr.addAll(yeon);
+        newArr.addAll(yeon); // newArr리스트는 아내리스트를 카피한거
 
         for (int i =0; i < ji.size(); i++){
             ji.get(i);
-                    for (int j = 0; j < newArr.size(); j++){
+                    for (int j = 0; j < ji.size(); j++){
                         newArr.get(j);
+boolean isContain = false;
+
+                        if (ji.get(i).equals(newArr.get(j)) ){
+                            shoArr.add(newArr.get(j)); // 같으면 빈리스트에 담기
+                        }
+                        if ()
                     }
-            if (ji.get(i) != newArr.get(i)){
-                ji.add(shoArr.get(i));
-            }
+
         } System.out.println(ji);
     }
 }
