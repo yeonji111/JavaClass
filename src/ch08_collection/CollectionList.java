@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.function.Consumer;
 
 public class CollectionList {
 
@@ -231,6 +232,55 @@ public class CollectionList {
             copyList3.add(numList.get(i));
         }
         System.out.println(copyList3);
+
+
+        System.out.println("\n===========================\n");
+
+        // Advanced for문 (= 향상된 for문)
+        // for each ( 리스트 내 요소를 담을 수 있는 변수선언 형태   :  리스트명  )
+        // 다른 프로그래밍 언어에서는 이러한 for문을
+        // for each문, for in문, for of문 등으로 부른다.
+        for(int i = 0; i < stuList.size(); i++){
+            String stu = stuList.get(i);
+            System.out.println( stuList.get(i));
+        }
+
+        for ( String stu : stuList  ){
+            System.out.println(stu);
+        }
+
+        // 인덱스가 존재하는 List에서는 향상된 for문이 크게 메리트 있지 않다.
+        // 코드가 조금 압축되는 정도에 그침
+
+        // 자바에서 forEach문 : 리스트명.forEach(new Consumer ...)
+        stuList.forEach(new Consumer<String>() {
+            @Override
+            public void accept(String s) {
+                System.out.println(s);
+                System.out.println("--------");
+            }
+        });
+
+        // 람다식으로 표현 : 리스트명.forEach(변수명 -> 명령할 내용)
+        // -> , =>
+        // 코드를 보다 간결하게 작성할 수 있다.
+        stuList.forEach(s -> System.out.println(s));
+
+        // 명령어가 2줄 이상인 경우 중괄호 사용
+        // 리스트명.forEach(변수명 -> { 명령할 내용 1; 명령할 내용 2  })
+        stuList.forEach(s -> {
+            System.out.println(s);
+            System.out.println("--------");
+        });
+
+
+
+
+
+
+
+
+
     }
 
 
