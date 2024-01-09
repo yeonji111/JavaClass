@@ -5,7 +5,7 @@ package ch09_class.nextit;
 public class NextStudent {
     // 필드변수(= 객체의 속성, 상태)
     String name;        /* 학생의 이름 */
-    int level;          /* 학생의 레벨 */
+    int level;          /* 학생의 레벨(기본값 = 1) */
     int exp;            /* 학생의 경험치 */
 
 
@@ -14,6 +14,19 @@ public class NextStudent {
     // 기본 생성자는 보이지 않더라도 존재한다.
     public NextStudent(){}
 
+    // 파라미터를 두개만 입력받는 생성자
+    public NextStudent(String name, int exp) {
+        this.name = name;
+        this.exp = exp;
+        this.level = 1; // 기본값 설정 두번째 방법
+    }
+    // 파라미터를 한개만 입력받는 생성자
+    public NextStudent(String name) {
+//        this.name = name;
+//        this.exp = 10;
+//        this.level = 1; // 기본값 설정 두번째 방법
+        this(name,1,10);
+    }
 
     // 파라미터를 입력받는 생성자 만들기
     // 생성자를 별도로 만들어 주었기 때문에,
@@ -50,6 +63,19 @@ public class NextStudent {
 
         System.out.println(name + "의 경험치: " + exp);
     }
+
+//    // 150일이 지남.. 에 대한 메소드 만들기
+//    public void afterDays() {
+//        exp += (int) (Math.random() * 31) + 10;
+//
+//        if (exp >= 100) {
+//            level++;
+//            exp %= 100;
+//            String expRes = exp + "%";
+//            System.out.println(name + "Lv. " + level + "(" + expRes + ")");
+//        }
+////        System.out.println(name + "의 경험치: " + exp);
+//    }
 
 
 }

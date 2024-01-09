@@ -1,5 +1,10 @@
 package ch09_class.nextit;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+
 public class NextitMain {
     public static void main(String[] args) {
         String ghName = "건희";
@@ -185,8 +190,151 @@ public class NextitMain {
 
         // 생성자를 추가해서 levle = 1을 기본값으로 설정하기
         // (굳이 level에 대한 값을 입력하지 않아도 되게끔)
+        NextStudent seunghwan = new NextStudent("승환", 20);
+        System.out.println(seunghwan);
+
+        // 생성자를 추가해서 파라미터로 이름만 입력하기
+        // (level은 1, exp는 10이 기본적으로 부여되도록 하기)
+        NextStudent changhun = new NextStudent("창훈");
+        System.out.println(changhun);
+
+        // 객체의 복사
+        NextStudent changhunBot = changhun;
+        System.out.println(changhunBot);
+
+        changhunBot.name = "창훈봇";
+        System.out.println(changhunBot);
+
+        // 메모리 주소가 다르고, 필드변수값은 동일한 객체 만들기
+        NextStudent robot = new NextStudent(changhun.name, changhun.level, changhun.exp);
+        System.out.println(robot);
+
+        robot.name = "로봇";
+        System.out.println(changhun);
+
+        // 하루가 지났습니다.
+        yuna.afterOneDay();
+        yeonji.afterOneDay();
+        yongseok.afterOneDay();
+        hh.afterOneDay();
+        heseong.afterOneDay();
+
+        // 이틀이 지났습니다.
+        yuna.afterOneDay();
+        yeonji.afterOneDay();
+        yongseok.afterOneDay();
+        hh.afterOneDay();
+        heseong.afterOneDay();
 
 
+        // 여러개의 객체를 한번에 다루기
+        ArrayList<NextStudent>  stuList = new ArrayList<>();
+
+        stuList.add(yuna);
+        stuList.add(yeonji);
+        stuList.add(yongseok);
+        stuList.add(hh);
+        stuList.add(heseong);
+
+        System.out.println(stuList);
+
+        for (int i = 0; i < stuList.size(); i++){
+//            System.out.println(stuList.get(i));
+            System.out.println(stuList.get(i).name);
+        }
+
+        // 하루가 지났습니다.
+        for (int i = 0; i < stuList.size(); i++){
+            stuList.get(i).afterOneDay();
+        }
+
+        // 향상된 for문 사용
+        for(  NextStudent stu : stuList  ){
+            stu.afterOneDay();
+        }
+
+        // 10일이 한번에 지난다.
+        for(int i = 0; i < 10; i++){
+            for ( NextStudent stu : stuList){
+                stu.afterOneDay();
+            }
+        }
+
+        // 굳이 객체를 변수에 담은 후 리스트에 추가하지 않아도 된다.
+        NextStudent hyeonggu = new NextStudent("형구");
+        stuList.add(hyeonggu);
+
+        stuList.add(new NextStudent("성구"));
+
+
+        System.out.println("\n=========== 150일이 지난 상태 확인 ===========\n");
+        // 150일이 지나게 하고
+        // 아래와 같이 출력되도록 하기
+        // 유나 Lv. 15 (20%)
+        // 연지 Lv. 14 (45%)
+
+//
+//        for (int i = 0; i < 150; i++) {
+//            for (NextStudent stu : stuList) {
+//                stu.afterDays();
+//            }
+
+//        }
+        for (int i = 0; i < stuList.size(); i++){
+            System.out.println(stuList.get(i).name + "Lv." + stuList.get(i).level + " (" + stuList.get(i).exp + "%)");
+        }
+
+
+        System.out.println("\n========= 정렬 ===========\n");
+//        stuList에 담겨있는 학생들의 레벨을 기준으로 정렬
+//         버블정렬 알고리즘 (내림차순)
+        int temp = 0;
+        for (int j = 0; j < stuList.size() -1; j++) {
+            for (int i = 0; i < stuList.size() - 1-j; i++) {
+
+                if (stuList.get(i).level < stuList.get(i+1).level) {
+                    NextStudent tmp = stuList.get(i);
+                    stuList.set(i, stuList.get(i+1));
+                    stuList.set(i+1, tmp);
+                }
+            }
+        }
+        // 등수와 함께 출력
+        for (int i = 0; i < stuList.size(); i++){
+            System.out.println((i+1)+"등." + stuList.get(i).name + "Lv." + stuList.get(i).level + " (" + stuList.get(i).exp + "%)");
+        }
+
+        System.out.println("\n===========================\n");
+
+        // Collections.sort
+        // if(stuList.get(i) < stuList.get(i+1)) 와 같은 상황
+        // 정렬의 기준이 없으므로 정렬이 안됨.
+        // -> 정렬의 기준을 알려주면 정렬이 됨
+        Collections.sort(stuList, new Comparator<NextStudent>() {
+            // stuList의 왼쪽 객체가 stuA로, 오른쪽 객체가 stuB로 들어옴
+
+            @Override
+            public int compare(NextStudent stuA, NextStudent stuB) {
+                // 정렬의 기준을 return 되는 정수가 양수인지 음수인지로 알려준다
+                // 왼쪽 stuA의 level에서 오른쪽 stuB의 level을 뺀 값이
+                // 양수인지 음수인지에 따라 내부적으로 자리가 바뀐다.
+                // stuA.level - stuB.level : 오름차순
+                // stuB.level - stuA.level : 내림차순
+                return stuA.level - stuB.level;
+            }
+        });
+        // 등수와 함께 출력
+        for (int i = 0; i < stuList.size(); i++){
+            System.out.println((i+1)+"등." + stuList.get(i).name + "Lv." + stuList.get(i).level + " (" + stuList.get(i).exp + "%)");
+        }
+
+
+        // 람다식 사용
+       Collections.sort(stuList, (stuA, stuB) -> stuA.level - stuB.level );  // 오름차순
+       Collections.sort(stuList, (stuA, stuB) -> {
+           return stuA.level - stuB.level;
+
+       });  // 오름차순
 
 
     }
