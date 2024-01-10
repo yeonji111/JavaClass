@@ -1,5 +1,7 @@
 package ch09_class.nextit;
 
+import ch09_class.school.Student;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -335,6 +337,12 @@ public class NextitMain {
            return stuA.level - stuB.level;
 
        });  // 오름차순
+
+
+        Student sikppang = new Student("식빵맨",56,70,67,((56+70+67)/3));
+//        System.out.println(sikppang.name); // Student 클래스는 (default) 사실상 protected이므로 다른 폴더(클래스)에선 사용X
+
+        Student tem = new Student();
 
 
     }
