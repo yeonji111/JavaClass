@@ -27,5 +27,11 @@ public class Fish {
         return fishPrice;
     }
 
+    public void setFishName(String fishName) {
+        this.fishName = fishName;
+    }
 
+    public void setFishPrice(int fishPrice) {
+        this.fishPrice = fishPrice;
+    }
 }

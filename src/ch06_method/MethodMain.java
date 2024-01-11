@@ -64,6 +64,7 @@ public class MethodMain {
         returnSum(1, 5);
         System.out.println(returnSum(1, 5));
 
+
         // 리턴값을 변수에 담을 수 있다.
         int result = returnSum(2, 6);
         System.out.println(result);

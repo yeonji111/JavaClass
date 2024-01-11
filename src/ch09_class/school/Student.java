@@ -3,8 +3,16 @@ package ch09_class.school;
 import ch09_class.common.MyUtil;
 
 // 학생은 이름, 국어, 영어, 수학, 평균을 가진다.
+// lombok 라이브러리
+//@Constructor
+//@Setter
+//@Getter
+//@toString
 public class Student {
     // 필드변수 선언
+    // 필드변수를 싹다 private 으로 두고
+    // 각 필드변수에 대해 Getter,Setter를 만드는 방식
+    // 캡슐화 (Encapsulation) -> 국룰
     private String name ;   /* 학생 이름 */
     private int kor;        /* 국어 점수 */
     private int eng;        /* 영어 점수 */

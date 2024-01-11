@@ -14,4 +14,9 @@ public class MyUtil {
         return (double) Math.round(num * pow) / pow;
     }
 
+    // a부터 b사이의 랜덤 숫자 리턴 메소드
+    public static int randomNum(int a, int b){
+        return (int)(Math.random() * (b-a+1)) + a;
+    }
+
 }
