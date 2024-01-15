@@ -24,101 +24,108 @@ public class HomepageMain {
 //        new Member("b001", "123b", "세균맨");
 
         MemberDB memDB = MemberDB.getInstance();
+        BoardDB boardDB = BoardDB.getInstance();
+
+        System.out.println(boardDB);    // @404b9385
 
         Scanner scan = new Scanner(System.in);
 
-        while (true){
+        while (true) {
             System.out.println("행동을 선택해주세요.");
             System.out.println("1. 회원가입 | 2. 로그인 | 3. 회원목록 | 4. 종료");
             System.out.println(">>>  ");
 
 
-           int command = Integer.parseInt(scan.nextLine());
+            int command = Integer.parseInt(scan.nextLine());
 
-           if(command == 1){
-               // todo 회원가입
-               System.out.print("아이디 입력: ");
-             String id = scan.nextLine();
+            if (command == 1) {
+                // todo 회원가입
+                System.out.print("아이디 입력: ");
+                String id = scan.nextLine();
 
-               System.out.println("비밀번호 입력: ");
-               String pw = scan.nextLine();
+                System.out.println("비밀번호 입력: ");
+                String pw = scan.nextLine();
 
-               System.out.println("닉네임 입력: ");
-               String name = scan.nextLine();
+                System.out.println("닉네임 입력: ");
+                String name = scan.nextLine();
 
-               // 사용자가 입력한 값에 대한  Member 객체 생성
-               Member mem = new Member(id,pw,name);
+                // 사용자가 입력한 값에 대한  Member 객체 생성
+                Member mem = new Member(id, pw, name);
 
-               // MemberDB 객체 내 memList에 memd을 넣기
-               memDB.signUp(mem);
-
-
+                // MemberDB 객체 내 memList에 memd을 넣기
+                memDB.signUp(mem);
 
 
-           }else if(command == 2){
-               // todo 로그인
-               System.out.print("아이디 입력: ");
-               String id = scan.nextLine();
+            } else if (command == 2) {
+                // todo 로그인
+                System.out.print("아이디 입력: ");
+                String id = scan.nextLine();
 
-               System.out.println("비밀번호 입력: ");
-               String pw = scan.nextLine();
+                System.out.println("비밀번호 입력: ");
+                String pw = scan.nextLine();
 
-               // memDB 내 memList에서 사용자가 입력한 id,pw와
-               // 둘 다 일치하는 member 객체가 존재한다면 가져오기
-               // 존재하지 않는다면 null값이 login에 담김
-               Member login = memDB.signIn(id,pw);
+                // memDB 내 memList에서 사용자가 입력한 id,pw와
+                // 둘 다 일치하는 member 객체가 존재한다면 가져오기
+                // 존재하지 않는다면 null값이 login에 담김
+                Member login = memDB.signIn(id, pw);
 
-               if (login != null){
-                   // 로그인 성공
-                   System.out.println("로그인 성공!!");
-                   System.out.println(login.getMemName() + "님 환영합니다.");
+                if (login != null) {
+                    // 로그인 성공
+                    System.out.println("로그인 성공!!");
+                    System.out.println(login.getMemName() + "님 환영합니다.");
 
-                   // 게시판 진입
-                   while (true){
-                       // todo 게시물 목록 출력
-                       BoardDB.showBoardList();
-                       System.out.println("행동을 선택해주세요.");
-                       System.out.println("1. 글쓰기 | 2. 글 보기 | 3. 로그아웃");
-                       System.out.println(">>> ");
+                    // 게시판 진입
+                    while (true) {
+                        // todo 게시물 목록 출력
+                        BoardDB.showBoardList();
+                        System.out.println("행동을 선택해주세요.");
+                        System.out.println("1. 글쓰기 | 2. 글 보기 | 3. 로그아웃");
+                        System.out.println(">>> ");
 
-                       int select = Integer.parseInt(scan.nextLine());
+                        int select = Integer.parseInt(scan.nextLine());
 
-                       if (select == 1){
-                           // todo 글쓰기
-                           System.out.print("글 제목 입력: "); String title = scan.nextLine();
-                           System.out.print("글 내용 입력: "); String contents = scan.nextLine();
+                        if (select == 1) {
+                            // todo 글쓰기
+                            System.out.print("글 제목 입력: ");
+                            String title = scan.nextLine();
 
-
-
-                       } else if (select == 2) {
-                           // todo 글 보기
-
-                       } else if (select == 3) {
-                           // todo 로그아웃
-                           break;
-
-                       }
-
-                   }
+                            System.out.print("글 내용 입력: ");
+                            String content = scan.nextLine();
 
 
+                            Board board = new Board(0, title, content, login.getMemName());
+                            BoardDB.wirteBoard(board);
 
 
-               }else {
-                   // 로그인 실패
-                   System.out.println("존재하지 않는 아이디 이거나 비밀번호가 틀립니다.");
+                        } else if (select == 2) {
+                            // todo 글 보기
+                            System.out.println("글 번호 입력: ");
+                            int no = Integer.parseInt(scan.nextLine());
 
-               }
+                            boardDB.readBoard(no);
 
-           } else if (command == 3) {
-               // todo 회원목록보기 / MemberDB 객체 내 memList 내부 조회
-               memDB.showMemList();
+                        } else if (select == 3) {
+                            // todo 로그아웃
+                            break;
+                        }
 
-           } else if(command == 4){
-               // todo 죵료
-               break;
-           }
+                    }
 
+
+                } else {
+                    // 로그인 실패
+                    System.out.println("존재하지 않는 아이디 이거나 비밀번호가 틀립니다.");
+
+                }
+
+            } else if (command == 3) {
+                // todo 회원목록보기 / MemberDB 객체 내 memList 내부 조회
+                memDB.showMemList();
+
+            } else if (command == 4) {
+                // todo 죵료
+                break;
+            }
 
 
         }

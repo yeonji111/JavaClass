@@ -15,7 +15,8 @@ public class Board {
         this.memId = memId;
     }
 
-    public Board() {}
+    public Board() {
+    }
 
     @Override
     public String toString() {
