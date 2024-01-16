@@ -1,11 +1,13 @@
 package yeonji.game;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Game {
     public static void main(String[] args) throws InterruptedException {
+        HashMap<Object, Object> recordMap = new HashMap<>();
+
+
+
         Scanner scan = new Scanner(System.in);
 
         System.out.println("어서오세요. 미니게임에 오신걸 환영합니다.");
@@ -70,7 +72,7 @@ public class Game {
                 System.out.println(playerA + "님 환영합니다.");
                 System.out.println();
                 System.out.println();
-                System.out.println("게임을 시작하려면 [아무런 키보드 자판]을 눌러주세요.");
+                System.out.println("게임을 시작하려면 [엔터키]를 눌러주세요.");
                 System.out.print(">>>> ");
                 scan.nextLine();
                 System.out.println();
@@ -80,7 +82,7 @@ public class Game {
 
                 long beforeA = System.currentTimeMillis();
 
-                System.out.println("기록 측정을 중단하고 싶으시면 [아무런 키보드 자판]을 눌러주세요");
+                System.out.println("기록 측정을 중단하고 싶으시면 [엔터키]를 눌러주세요");
                 scan.nextLine();
                 System.out.println();
                 long afterA = System.currentTimeMillis();
@@ -105,7 +107,7 @@ public class Game {
                 System.out.println(playerB + "님 환영합니다.");
                 System.out.println();
                 System.out.println();
-                System.out.println("게임을 시작하려면 [아무런 키보드 자판]을 눌러주세요.");
+                System.out.println("게임을 시작하려면 [엔터키]를 눌러주세요.");
                 System.out.print(">>>> ");
                 scan.nextLine();
                 System.out.println();
@@ -115,7 +117,7 @@ public class Game {
 
                 long beforeB = System.currentTimeMillis();
 
-                System.out.println("기록 측정을 중단하고 싶으시면 [아무런 키보드 자판]을 눌러주세요");
+                System.out.println("기록 측정을 중단하고 싶으시면 [엔터키]를 눌러주세요");
                 scan.nextLine();
                 System.out.println();
                 long afterB = System.currentTimeMillis();
@@ -135,7 +137,7 @@ public class Game {
                 // 결과 출력 메세지를 좀 더 늦게 나오게 하고 싶음(레이싱 게임 수업했던거 참고)
                 System.out.println();
                 System.out.println();
-                Thread.sleep(2000);
+                Thread.sleep(1500);
                 System.out.println("-------------- 결과 -----------------");
                 System.out.print(" ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⣄⡀⠀⠀⡠⠞⠛⢦⣠⢤⡀⠀\n" +
                         "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⢠⠏⠀⠀⢱⡀⣸⠁⠀⡴⠋⠀⠀⣹⠀\n" +
@@ -165,7 +167,7 @@ public class Game {
 
                 // todo 플레이어 A,B의 기록 저장 (recordDB 클래스를 하나 새로 파서..?)
                 // <플레이어 이름, 기록> 이 한 세트인 recordMap 생성
-                HashMap<Object, Object> recordMap = new HashMap<>();
+
                 recordMap.put(playerA, resultA);
                 recordMap.put(playerB, resultB);
 
@@ -178,8 +180,24 @@ public class Game {
                 // 유저의 아이디(혹은 입력받은 이름)과 기록을 세트로 저장해서 배열에 저장한 후
                 // 배열을 내림차순으로 정렬하고 싶은데
                 // 세트로 저장을 어떻게 하는 지 모르겠어서 고민중..
-                // Hasp map..?
+                // HashMap..?
+//                HashMap<Object, Object> recordmap = new HashMap<>().clone();
+//                System.out.println(recordmap);
                 System.out.println("구현중,,,");
+
+                // recordMap을 돌면서 크기 비교
+                Set<Map.Entry<Object, Object>> recordSet = recordMap.entrySet();
+
+                for(Map.Entry<Object, Object> entry :recordSet) {
+                    System.out.println(entry.getValue());
+
+                    // 결과값을 리스트에 담고
+                    // 리스트를 정렬한 다음에
+                    // 리스트에 담긴 value = recordSet.getKeyValue와 같은 사람을 찾아서 프린트하기?
+
+                    Collections.sort(entry.getValue());
+
+                }
 
 
             }
