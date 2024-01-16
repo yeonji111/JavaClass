@@ -179,6 +179,7 @@ public class Game {
                 // 배열을 내림차순으로 정렬하고 싶은데
                 // 세트로 저장을 어떻게 하는 지 모르겠어서 고민중..
                 // Hasp map..?
+                System.out.println("구현중,,,");
 
 
             }
