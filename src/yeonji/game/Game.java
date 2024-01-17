@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Game {
     public static void main(String[] args) throws InterruptedException {
-        HashMap<Object, Object> recordMap = new HashMap<>();
-
+        HashMap<String, Float> recordMap = new HashMap<>();
+        ArrayList<Float> recordList = new ArrayList<Float>();
 
 
         Scanner scan = new Scanner(System.in);
@@ -13,9 +13,10 @@ public class Game {
         System.out.println("어서오세요. 미니게임에 오신걸 환영합니다.");
         System.out.println();
         System.out.println();
+
         while (true) {
             System.out.println("원하는 카테고리를 선택해주세요");
-            System.out.println("[ 1. 회원 가입 | 2. 로그인 | 3. 2P 게임 플레이 | 4. 랭킹 보기 | 5. 로그아웃 ]");
+            System.out.println("[ 1. 회원 가입 | 2. 로그인 | 3. 2P 게임 플레이 | 4. 기록 다시보기 및 순위 | 5. 로그아웃 ]");
             System.out.print(">>> ");
             int input = Integer.parseInt(scan.nextLine());
 
@@ -61,6 +62,7 @@ public class Game {
                 System.out.println("게임 설명: ");
                 System.out.println("본 게임은 눈을 감고 감으로 10초에 근접한");
                 System.out.println("     사람이 이기는 게임입니다 !!");
+                System.out.println(" 게임 시작과 종료는 [엔터키]를 입력해주세요 !!");
                 System.out.println();
                 System.out.println("*******************************************");
                 System.out.println();
@@ -96,7 +98,7 @@ public class Game {
                 System.out.println("===============" + "플레이어 " + playerA + "님의 결과===============");
                 System.out.println("10초보다 " + resultA + "초 차이 납니다!!");
                 System.out.println("====================================================");
-
+                recordList.add(resultA);
 
                 // 플레이어B 이름 입력받기, 게임 시작 & 끝 한세트
                 // 플레이어B 기록 정산
@@ -131,7 +133,7 @@ public class Game {
                 System.out.println("===============" + "플레이어 " + playerB + "님의 결과===============");
                 System.out.println("10초보다 " + resultB + "초 차이 납니다!!");
                 System.out.println("====================================================");
-
+                recordList.add(resultB);
 
                 // 플레이어 A와 B의 기록 비교 & 대결 결과 출력
                 // 결과 출력 메세지를 좀 더 늦게 나오게 하고 싶음(레이싱 게임 수업했던거 참고)
@@ -156,7 +158,9 @@ public class Game {
                         "⡇⠘⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
                         "⢳⡀⠘⢦⡀⠀⠀⠀⠀⠀⠀⡰⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
                         "⠀⠳⣄⠀⠙⠲⣤⣀⣠⠴⠊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-                        "⠀⠀⠈⠓⠦⣄⣀⡠⠎⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀" );
+                        "⠀⠀⠈⠓⠦⣄⣀⡠⠎⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+                System.out.println();
+                System.out.println();
                 System.out.println();
                 if (resultA < resultB) { // 플레이어A가 이겼을 경우
                     System.out.println("플레이어 " + playerA + "님의 승리!!");
@@ -171,7 +175,7 @@ public class Game {
                 recordMap.put(playerA, resultA);
                 recordMap.put(playerB, resultB);
 
-                System.out.println(recordMap);
+                // System.out.println(recordMap);
 
 
             }
@@ -183,32 +187,61 @@ public class Game {
                 // HashMap..?
 //                HashMap<Object, Object> recordmap = new HashMap<>().clone();
 //                System.out.println(recordmap);
-                System.out.println("구현중,,,");
+//                System.out.println("구현중,,,");
 
                 // recordMap을 돌면서 크기 비교
-                Set<Map.Entry<Object, Object>> recordSet = recordMap.entrySet();
+                Set<Map.Entry<String, Float>> recordSet = recordMap.entrySet();
 
-                for(Map.Entry<Object, Object> entry :recordSet) {
-                    System.out.println(entry.getValue());
+                // 결과값을 리스트에 담고
+                System.out.println();
+                System.out.println("***************************");
+                System.out.println();
+                System.out.println("플레이어의 기록");
+                System.out.println(recordMap);
+                System.out.println();
+                System.out.println("***************************");
 
-                    // 결과값을 리스트에 담고
-                    // 리스트를 정렬한 다음에
-                    // 리스트에 담긴 value = recordSet.getKeyValue와 같은 사람을 찾아서 프린트하기?
+                // System.out.println(recordList);
+                // 리스트를 정렬한 다음에
 
-                    Collections.sort(entry.getValue());
+                Collections.sort(recordList);
+                // 순회하면서 getKey와 recordList의 항목이 일치하는 부분 찾기
+                float result = (float) 0.00;
 
+                // Map순회용
+
+                for (Map.Entry<String, Float> entry : recordSet) {
+//                    System.out.println(entry);
+//                    Collections.sort(entry.getValue());
+
+
+                    for (int i = 0; i < recordList.size(); i++) { // for문만 반복하고 , while 내부로 들어가지 않고 있음..
+
+                        // 리스트에 담긴 value = recordSet.getKeyValue와 같은 사람을 찾아서 프린트하기?
+                        if (Objects.equals(recordList.get(i), entry.getValue())) {
+                            System.out.println((i + 1) + "등: " + entry.getKey());
+                        }
+//                        while (recordList.get(i) == entry.getValue()) {
+//                            System.out.println((i + 1) + "등: " + entry.getKey());
+//                        }
+                    }
+                    //    System.out.println(entry.getValue()); --- recordList에 결과값들이 담겼고, entry.getValue랑 데이터값 일치
                 }
+//                System.out.println(recordList);
 
+                System.out.println("***************************");
 
             }
             if (input == 5) {
                 //로그아웃
                 break;
             }
-        }
 
+        }
     }
 }
+
+
 
 
 
