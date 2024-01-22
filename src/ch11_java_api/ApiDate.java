@@ -1,5 +1,6 @@
 package ch11_java_api;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -7,7 +8,7 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 public class ApiDate {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, ParseException {
         // API란? 완성된 코드를 가져다 쓰는 것
         // SDK란? 로직 정도는 만들어져 있는데 쓰려면 추가 개발이 필요
 
@@ -89,7 +90,168 @@ public class ApiDate {
 //        System.out.println(new Date());
 
 
+        System.out.println("\n============================\n");
+        // "132" 숫자형 문자열
+        // "2024-01-22" 날짜형 문자열
+        // "2024-01-19"
+        // 날짜형 문자열(String) -> Date 객체로 변환
+        String strTomorrow = "2024-01-23 09:07:20";
+
+        // 변환하고자 하는 문자열과 똑같은 형태의 포멧 설정
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date dateTomorrow = sdf.parse(strTomorrow);
+
+        System.out.println(dateTomorrow);
+
+        // 시간만 변환해보기
+        String strTime = "09:13:40";
+        sdf = new SimpleDateFormat("HH:mm:ss");
+        Date dateTime = sdf.parse(strTime);
+        System.out.println(dateTime); // Thu Jan 01 09:13:40 KST 1970, 날짜를 지정하지 않으면 기본값인 1970.01.01로 출력된다.
+
+        // 날짜만 변환해보기
+        String strYear = "2024.01.22";
+        sdf = new SimpleDateFormat("yyyy.MM.dd");
+        Date dateYear = sdf.parse(strYear);
+        System.out.println(dateYear); //  00:00:00 기본값으로 출력된다.
+
+        System.out.println("\n===========================\n");
+
+
+        // 날짜 세팅하기
+        Calendar cal = Calendar.getInstance();
+
+        // 1998년 1월 31일
+        // month 부분은 1월이 0, 2월이 1, 3월이 2, ... 12월이 11
+        cal.set(1998, 0, 31);
+        // 1998년 1월 31일 21시 38분 52초
+        cal.set(1998, 0, 31, 21, 38, 52);
+        sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+        System.out.println(sdf.format(cal.getTime())); // set으로 설정하고 get으로 꺼내야함
+
+
+        // Date 객체로부터 Calendar 객체 얻기
+        Date temp = new Date();
+        Calendar calTemp = Calendar.getInstance();
+        // Date 객체의 시간이 Calendar 객체에 저장된다.
+        calTemp.setTime(dateTomorrow);
+        System.out.println(sdf.format(calTemp.getTime()));
+
+
+        System.out.println("\n=========================\n");
+
+        // 날짜 꺼내기
+
+        // 년도
+        System.out.println(calTemp.get(Calendar.YEAR));
+
+        // 월
+        System.out.println(calTemp.get(Calendar.MONTH) + 1);
+
+        // 일
+        System.out.println(calTemp.get(Calendar.DATE));
+
+        // 시간
+        System.out.println(calTemp.get(Calendar.HOUR)); // hh와 같음(9시)
+        System.out.println(calTemp.get(Calendar.HOUR_OF_DAY)); // HH와 같음(21시)
+
+        // 분
+        System.out.println(calTemp.get(Calendar.MINUTE));
+
+        // 초
+        System.out.println(calTemp.get(Calendar.SECOND));
+
+        System.out.println("\n========================\n");
+
+        String oneDay = "2024.01.10 13:14:15";
+        String twoDay = "2024.01.12 15:14:15";
+
+        sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+
+        Date oneDate = sdf.parse(oneDay);
+        Date twoDate = sdf.parse(twoDay);
+
+        System.out.println(oneDate);
+        System.out.println(twoDate);
+
+        // Date 객체에 .getTime()을 하면 그 밀리초(long)가 나옴
+        // .getDate(), .getHour() 등 줄이 그러진 메소드들에 대해
+        // deprecated 대상이라고 되어있는데
+        // 곧 지원 종료 대상이라고 보면 된다. (추후 삭제될 수 있음)
+        System.out.println(oneDate.getTime()); // 1704860055000
+        System.out.println(twoDate.getTime()); // 1705040055000
+
+        long diffMillSec = twoDate.getTime() - oneDate.getTime();
+        System.out.println(diffMillSec + "밀리초 차이");
+
+        // 1초 = 1000밀리초
+        // diffMillSec / 1000 = N초
+        long diffSec = diffMillSec / 1000;
+        System.out.println(diffSec + "초 차이");
+
+        // 1분 = 60초
+        // diffSec / 60 -> 분 단위
+        long diffMin = diffSec / 60;
+        System.out.println(diffMin + "분 차이");
+
+        // 1시간 = 60분
+        // diffMin / 60 -> 시간 단위
+        long diffHour = diffMin / 60;
+        System.out.println(diffHour + "시간 차이");
+
+        // 1일 = 24시간
+        // diffHour / 24 -> 일 단위
+        long diffDate = diffHour / 24;
+        System.out.println(diffDate + "일 차이");
+
+        // 한줄로 끝내기
+        long diff = diffMillSec / 1000 / 60 / 60 / 24;
+        long diffTwo = diffMillSec / (1000 * 60 * 60 * 24);
+        System.out.println(diff + "일 차이");
+        System.out.println(diffTwo);
+
+        System.out.println("\n=============================\n");
+
+        // 디데이 계산기
+        // 2023.12.18 에 대해 + 35
+        // 2023.02.09 에 대해 -18
+        // 2024.01.20 에 대해 +2
+        // 2024.01.24 에 대해 -2
+        // 이 출력되도록 하는 디데이 계산기 만들어보기
+
+        Date todayDate = new Date(); // 오늘 2024.01.22
+
+        sdf = new SimpleDateFormat("yyyy.MM.dd");
+
+        String todayStr = sdf.format(todayDate); // 2024.01.22
+        todayDate = sdf.parse(todayStr); // 2024.01.22 00:00:00
+
+        String before = "2024.01.20"; // 이틀전
+        String after = "2024.01.24"; // 이틀후
+        String start = "2023.12.18"; // 훈련시작일
+        String newDay = "2024.02.09"; // 설
+
+
+        Date beforeDate = sdf.parse(before);
+        long calDiff = todayDate.getTime() - beforeDate.getTime();
+        calDiff = calDiff / (1000*60*60*24);
+        System.out.println(calDiff);
+
+        Date afterDate = sdf.parse(after);
+        long dday = todayDate.getTime() - afterDate.getTime();
+        dday = dday / (1000*60*60*24);
+        System.out.println(dday);
+        Date startDate = sdf.parse(start);
+        Date newDate = sdf.parse(newDay);
+
+        System.out.println((todayDate.getTime() - beforeDate.getTime()) / 1000 / 60 / 60 / 24); // 01.22 - 01.20
+        System.out.println((todayDate.getTime() - afterDate.getTime()) / 1000 / 60 / 60 / 24 ); // 0때문에?
+        System.out.println((todayDate.getTime() - startDate.getTime()) / 1000 / 60 / 60 / 24); // 훈련시작 35일 경과
+        System.out.println((todayDate.getTime() - newDate.getTime()) / 1000 / 60 / 60 / 24);
+
+        System.out.println("\n=====================\n");
 
 
     }
+
 }

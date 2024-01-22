@@ -5,6 +5,7 @@ import ch09_class.school.Student;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 
 public class MySortMain {
     public static void main(String[] args) {
@@ -66,7 +67,8 @@ public class MySortMain {
         }
 
         // MyCollections.mySort 와 람다식을 사용해서 내림차순정렬
-        MyCollections.mySort(stuList, (left, right) -> left.getAvg() < right.getAvg());
+//        MyCollections.mySort(stuList, (left, right) -> left.getAvg() < right.getAvg());
+//
 
         for (int i = 0; i < stuList.size(); i++){
             System.out.println(stuList.get(i));
