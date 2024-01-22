@@ -4,12 +4,10 @@ import ch09_class.school.Student;
 import ch10_extends_interface.mysort.MyCollections;
 import ch10_extends_interface.mysort.MyComparator;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
+import java.util.*;
 
 public class DateBoardMain {
 
@@ -52,15 +50,20 @@ public class DateBoardMain {
 //
 //            }
 
+        Comparator<DateBoard> comparator = (o1, o2) -> Long.valueOf(
+                o1.getDate()
+        )
         Collections.sort(dbList, (o1, o2) -> {
-            if (o1.getTime() - o2.getTime() > 0){
+
                 return -1;
             }
             return 0;
         });
 
-        for (int i = 0; i < dbList.size(); i++){
-            System.out.println(dbList.get(i));
+
+
+
+
         }
         }
 
