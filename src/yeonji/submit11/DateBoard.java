@@ -1,6 +1,5 @@
 package yeonji.submit11;
 
-import ch09_class.homepage.BoardDB;
 
 public class DateBoard {
     private String title;
@@ -29,6 +28,7 @@ public class DateBoard {
         this.date = date;
 
     }
+
 
 
 }
