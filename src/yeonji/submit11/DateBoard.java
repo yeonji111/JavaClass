@@ -6,6 +6,8 @@ public class DateBoard {
     private String title;
     private String date;
 
+    public DateBoard(){}
+
     public DateBoard(String title, String date) {
         this.title = title;
         this.date = date;

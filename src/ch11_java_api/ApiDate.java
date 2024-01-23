@@ -251,6 +251,71 @@ public class ApiDate {
 
         System.out.println("\n=====================\n");
 
+        // Calendar 의 날짜 연산
+        // 특정 날짜를 기준으로 원하는 날짜를 더하거나 뺄 때 유용
+        Calendar toCal = Calendar.getInstance();
+        sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+        System.out.println(sdf.format(toCal.getTime())); // A) 2024.01.23 10:36:42
+
+        // 3일 뒤 날짜로
+        toCal.add(Calendar.DATE, 3);
+        System.out.println(sdf.format(toCal.getTime())); // B) 2024.01.26 10:36:42
+
+        // 20일 뒤 날짜로
+        toCal.add(Calendar.DATE, 20);
+        System.out.println(sdf.format(toCal.getTime())); // C) 2024.02.15 10:37:50 --> B + 20일한 값
+
+        toCal.add(Calendar.DATE, -7);
+        System.out.println(sdf.format(toCal.getTime())); // D) 2024.02.08 10:39:05 --> C -7일한 값
+
+        // 1달 뒤
+        toCal.add(Calendar.MONTH, 1);
+        System.out.println(sdf.format(toCal.getTime())); // F) 2024.03.08 10:40:47 --> D -1개월한 값
+
+
+        System.out.println("\n==========================\n");
+
+        // 달력 만들기
+        int year = 2024;
+        int month = 2;
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month - 1, 1); // Calendar 객체에서 Month는 -1해야 생각대로 됨
+        System.out.println(sdf.format(calendar.getTime()));
+
+        // 해당 월의 1일이 무슨 요일에 시작하는지 확인
+        // 1: 일요일, 2: 월요일, 3: 화요일, 4: 수요일, ... 7: 토요일
+        int startDay = calendar.get(Calendar.DAY_OF_WEEK);
+        System.out.println(startDay); // 5 출력, 일요일부터 시작하므로
+
+        // 해당 월의 마지막 일자가 언제인지
+        int lastDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        System.out.println(lastDay);
+
+        System.out.println(year +"년 " + month + "월 달력");
+        System.out.println("일\t월\t화\t수\t목\t금\t토");
+
+        int day = 1;
+        for (int i = 0; i < 42; i++){
+            // startDay가 5(목요일) 일때 i=4에 해당
+            // i가 0, 1, 2, 3 일때는 그리지 않음
+            if (i < startDay - 1){
+                System.out.print("\t");
+            } else {
+                System.out.print(day + "\t");
+
+                if (day == lastDay){
+                    break;
+                }
+                day++;
+
+            } // i가 6,13, 20, 27, ... 일때 줄바꿈 넣기
+            if (i % 7 == 6){
+                System.out.println();
+            }
+
+        }
+
 
     }
 

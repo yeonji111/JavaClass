@@ -35,7 +35,7 @@ public class BoardMain {
 
             }
             if (command == 3) {
-
+                break;
             }
 
         }

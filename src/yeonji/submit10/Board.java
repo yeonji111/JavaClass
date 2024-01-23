@@ -3,10 +3,10 @@ package yeonji.submit10;
 import java.util.ArrayList;
 
 public class Board {
-    int titleNum;
-    String title;
-    String date;
-    String content;
+    private int titleNum;
+    private String title;
+    private String date;
+    private String content;
 
     public Board(int titleNum, String title, String date, String content) {
         this.titleNum = titleNum;
