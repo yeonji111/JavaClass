@@ -70,5 +70,20 @@ public class ApiPattern {
         result = example.matches(regex);
         System.out.println(example +"의 검증 " + regex + " 결과: " + result);
 
+        // 이메일 형식 체크
+        example = "pyj10370160@gmail.com";
+        regex = "^[\\w]+[@][a-z]+[.][a-z]+$";
+        result = example.matches(regex);
+
+        System.out.println(example +"의 검증 " + regex + " 결과: " + result);
+
+        // PIN 비밀번호 설정시
+        // 동일한 숫자가 연달아 3개 이상 있으면 금지 (단순 비밀번호 금지)
+        example = "111224";
+        regex = "^.*([0-9])\\1\\1.*$";  // .* 0개 이상의 문자가 앞에 있고 반복하면서 [0-9]\\1\\1 이 반복하면서 검증함
+        result = example.matches(regex); // \\1\\1은 N(i),N(i)이라고 생각하는게 편할듯
+
+        System.out.println(example +"의 검증 " + regex + " 결과: " + result);
+
     }
 }
