@@ -253,5 +253,23 @@ public class ApiJson {
 //        System.out.println(jsonDate);
         System.out.println(jsonDate.get("KRW"));
 
+
+        // 선생님 버전
+        JSONObject respJson = (JSONObject) respParser.parse(resp);
+
+        System.out.println(gson3.toJson(respJson));
+        // 나 = JSON Parser Online을 사용해 가독성 좋게 확인
+        // 선생님 =  Gson gson3 = gsonBuilder.setPrettyPrinting().create(); 으로 콘솔창으로 확인
+
+        // 아래는 변수명만 다를뿐 풀이과정은 같음
+        JSONObject rates = (JSONObject)respJson.get("rates");
+        System.out.println(rates);
+
+        JSONObject date = (JSONObject) rates.get("2020-08-02");
+        System.out.println(date);
+
+        double krw = (double)date.get("KRW");
+        // KRW 의 Value 값은 Object가 아닌 double타입이므로 double로 강제 형변환
+        System.out.println(krw);
     }
 }
