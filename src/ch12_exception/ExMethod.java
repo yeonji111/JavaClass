@@ -54,13 +54,14 @@ public class ExMethod {
 
     // 입력받은 이름을 콘솔창에 출력
     // 파라미터로 들어온 문자열이 숫자거나, empty면 안됨
+    // 에러코드 1은 빈 문자열, 2는 숫자입력
     public static void printName(String name) throws BizException{
         if (name.length() == 0){
-            throw new BizException("빈 문자열이 들어왔다.", 1);
+            throw new BizException("빈 문자열이 들어왔다.", ExCode.API_001);
         }
         if (name.matches("^.*[0-9].*$")){
             // 에러 발생 시, 메소드가 중단된다.
-            throw new BizException("숫자가 들어왔다", 2);
+            throw new BizException("숫자가 들어왔다", ExCode.API_002);
         }
         System.out.println(name);
     }

@@ -124,7 +124,39 @@ public class ExceptionMain {
             e.printStackTrace();
             System.out.println(e.getMessage()); // 에러 메세지 "숫자가 들어왔다" 출력
             System.out.println(e.getErrCode()); // 에러 코드 2 출력
+        } catch (Exception e){ // 예상치 못한 에러를 위한 보험깔기
+            e.printStackTrace();
+            System.out.println("알 수 없는 에러");
         }
+
+        System.out.println("\n====================================\n");
+
+        // try~catch~fianlly 구문
+        try {
+            ExMethod.printName("123");
+        } catch (BizException e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("에러가 나든 말든 실행");
+        }
+
+        // 어차피 try~catch 밖에 있는 코드는
+        // 에러가 나든 말든 실행됨
+        System.out.println("탈출");
+
+        Scanner sca = new Scanner(System.in);
+        try{
+            String temp = ExMethod.rsp(1);
+            String name = sca.nextLine();
+            System.out.println(name + temp);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // finally는 주로 자원을 닫기 위한 목적으로 사용된다.
+            // Java에서 DB와 연결하는 JDBC 챕터에서 자세히 볼 예정
+            sca.close();
+        }
+
 
 
     }
