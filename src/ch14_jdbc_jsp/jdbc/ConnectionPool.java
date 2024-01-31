@@ -12,7 +12,7 @@ public class ConnectionPool {
     // ArrayList 는 동기화 지원하지 않음
     // Vector 는 동기화를 지원하는 List(= ArrayList 와 사용법이 같음)
     // ArrayList<Connection>pool = new ArrayList<>();
-    Vector<Connection>pool = new Vector<>();
+    private Vector<Connection>pool = new Vector<>();
 
     private ConnectionPool(){
         // ConnectionFactory 로부터 Connection 객체를
