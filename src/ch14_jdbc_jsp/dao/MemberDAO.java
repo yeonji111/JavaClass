@@ -141,16 +141,16 @@ public class MemberDAO {
         return result;
 
     }
+
     // 회원탈퇴
-    public MemberDTO deleteMember(Connection conn, MemberDTO member) throws SQLException {
+    public int deleteMember(Connection conn, MemberDTO member) throws SQLException {
         StringBuffer query = new StringBuffer();
         query.append("DELETE            ");
         query.append("FROM              ");
         query.append("  members         ");
-        query.append("WHERE             ");
-        query.append("mem_id = ?        ");
-        query.append("AND               ");
-        query.append("mem_pw = ?        ");
+        query.append("WHERE  1=1        ");
+        query.append(" AND  mem_id = ?  ");
+        query.append(" AND  mem_pw = ?  ");
 
         PreparedStatement ps = conn.prepareStatement(query.toString());
 
@@ -158,11 +158,8 @@ public class MemberDAO {
         ps.setString(idx++, member.getMemId());
         ps.setString(idx++, member.getMemPw());
 
-        ResultSet rs = ps.executeQuery();
+        int result = ps.executeUpdate();
 
-        MemberDTO result = new MemberDTO();
-
-        rs.close();
         ps.close();
 
         return result;

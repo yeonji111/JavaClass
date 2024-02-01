@@ -86,10 +86,10 @@ public class MemberService {
     }
 
     // 회원탈퇴 메소드
-    public MemberDTO deleteMember(MemberDTO member){
+    public int deleteMember(MemberDTO member){
         Connection conn = cp.getConnection();
 
-        MemberDTO result = null;
+        int result = 0;
 
         try {
             result = dao.deleteMember(conn, member);
@@ -98,8 +98,6 @@ public class MemberService {
         }finally {
             cp.returnConnection(conn);
         }
-
-
         return result;
     }
 
