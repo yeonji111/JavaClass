@@ -50,34 +50,38 @@ public class FoodDB {
 
 
     // 게임 메소드
-    public void playGame() {
-        // todo foodList 에 데이터를 추가해서 16강 이상의 이상형 월드컵으로 사용할때 쓸 수 있는 메소드로 만들기
+    public void playGame(int num) {
+        //  foodList 에 데이터를 추가해서 16강 이상의 이상형 월드컵으로 사용할때 쓸 수 있는 메소드로 만들기
         //  (많은 데이터가 있으면 파라미터로 입력받는 num 강 이상형 월드컵 게임이 될 수 있도록 하기)
 
         Scanner scan = new Scanner(System.in);
 //        boolean isDuple = false;
         ArrayList<Food> gameList = new ArrayList<>();
-        // todo foodList 에서 랜덤으로 파라미터로 들어온 변수값만큼 뽑기
+
+        //  foodList 에서 랜덤으로 파라미터로 들어온 변수값만큼 뽑기
         Collections.shuffle(foodList);
+        for (int i = 0; i < num; i++){
+            gameList.add(foodList.get(i));
+        }
 
         System.out.println("======= 음식 이상형 월드컵 =======");
 
-        while (foodList.size() > 0) {
+        while (gameList.size() > 0) {
 
-            if (foodList.size() % 4 == 0) {
-                System.out.println(foodList.size() + "강");
+            if (gameList.size() % 4 == 0) {
+                System.out.println(gameList.size() + "강");
 
-            } else if (foodList.size() == 1) {
+            } else if (gameList.size() == 1) {
                 // 리스트에 하나 남았을때, 남은 데이터를 출력하고 우승 메세지 띄우기 + 종료하기
                 System.out.println("결승");
-                System.out.println(foodList.get(0).getFoodName() + " 우승!!");
+                System.out.println(gameList.get(0).getFoodName() + " 우승!!");
                 break;
             }
 
-            for (int i = 0; i < foodList.size(); i++) {
+            for (int i = 0; i < gameList.size(); i++) {
                 System.out.println("메뉴를 선택해주세요");
-                System.out.println("1. " + foodList.get(i).getFoodName()
-                        + " | " + "2. " + foodList.get(i + 1).getFoodName());
+                System.out.println("1. " + gameList.get(i).getFoodName()
+                        + " | " + "2. " + gameList.get(i + 1).getFoodName());
                 System.out.print(">>>  ");
 
                 int select = Integer.parseInt(scan.nextLine());
@@ -89,9 +93,9 @@ public class FoodDB {
                     return;
 
                 } else if (select == 1) {
-                    foodList.remove(foodList.get(i + 1));
+                    gameList.remove(gameList.get(i + 1));
                 } else if (select == 2) {
-                    foodList.remove(foodList.get(i));
+                    gameList.remove(gameList.get(i));
                 }
             }
         }

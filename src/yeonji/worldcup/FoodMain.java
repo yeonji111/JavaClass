@@ -12,9 +12,9 @@ public class FoodMain {
 
         FoodDB foodDB = FoodDB.getIntstnace();
 
-        Scanner scan = new Scanner(System.in);
+//        Scanner scan = new Scanner(System.in);
 
-        foodDB.playGame();
+        foodDB.playGame(8);
 
 
 
