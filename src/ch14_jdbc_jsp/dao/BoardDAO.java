@@ -30,6 +30,7 @@ public class BoardDAO {
         query.append("      mb.BO_NO                                 ");
         query.append("      ,mb.BO_TITLE                             ");
         query.append("      ,mb.BO_CONTENT                           ");
+        query.append("      ,mb.VIEW_COUNT                           ");
         query.append("      ,mb.MEM_ID                               ");
         query.append("      ,m.MEM_NAME                              ");
         query.append("      ,TO_CHAR(mb.BO_DATE,'mm-dd' )AS BO_DATE  ");
@@ -38,6 +39,7 @@ public class BoardDAO {
         query.append("      ,MEM_BOARDS mb                           ");
         query.append("WHERE 1=1                                      ");
         query.append("    AND  m.MEM_ID = mb.MEM_ID                  ");
+        query.append("    AND  mb.DEL_YN = 'N'                       ");
         query.append("    ORDER BY mb.BO_NO DESC                     ");
 
         PreparedStatement ps = conn.prepareStatement(query.toString());
@@ -54,6 +56,7 @@ public class BoardDAO {
             board.setMemId(rs.getString("MEM_ID"));
             board.setMemName(rs.getString("MEM_NAME"));
             board.setBoDate(rs.getString("BO_DATE"));
+            board.setViewCount(rs.getInt("VIEW_COUNT"));
 
             result.add(board);
 
@@ -75,13 +78,15 @@ public class BoardDAO {
         query.append("      ,BO_CONTENT         ");
         query.append("      ,MEM_ID             ");
         query.append("      ,BO_DATE            ");
+        query.append("      ,VIEW_COUNT         ");
         query.append("      ) VALUES (          ");
         query.append("  seq_mem_boards.NEXTVAL  ");
         query.append("          , ?             ");
-        query.append("          , ?            ");
-        query.append("          , ?            ");
-        query.append("          , SYSDATE      ");
-        query.append("  )                      ");
+        query.append("          , ?             ");
+        query.append("          , ?             ");
+        query.append("          , SYSDATE       ");
+        query.append("          , 0             ");
+        query.append("  )                       ");
 
         PreparedStatement ps = conn.prepareStatement(query.toString());
 
@@ -97,42 +102,99 @@ public class BoardDAO {
         return result;
     }
 
-    // 글 내용 보기
-    public BoardDTO readBoard(Connection conn, BoardDTO board) throws SQLException {
-        StringBuffer query = new StringBuffer();
-        query.append("SELECT            ");
-        query.append("       b.bo_title    ");
-        query.append("      , m.mem_name    ");
-        query.append("      , b.bo_date  ");
-        query.append("      , b.bo_content ");
-        query.append("FROM              ");
-        query.append("  members m, mem_boards b         ");
-        query.append("WHERE 1=1         "); // 1=1 는 항상 true
-        query.append("  AND bo_no = ?  ");
-        query.append("  AND mem_id = ?  ");
-        query.append("  AND m.mem_id = b.mem_id  ");
+    // 게시글 조회 (SELECT, WHERE)
+    public BoardDTO readBoard(Connection conn, int no) throws SQLException {
+//        StringBuffer query = new StringBuffer();
+//        query.append("SELECT                     ");
+//        query.append("       b.bo_title          ");
+//        query.append("      , m.mem_name         ");
+//        query.append("      , TO_CHAR(b.BO_DATE,'mm-dd' )AS BO_DATE          ");
+//        query.append("      , b.bo_content       ");
+//        query.append("FROM                       ");
+//        query.append("  members m, mem_boards b  ");
+//        query.append("WHERE 1=1                  ");
+//        query.append("  AND b.bo_no = ?          ");
+//        query.append("  AND m.mem_id = b.mem_id  ");
 
+        StringBuffer query = new StringBuffer();
+        query.append("SELECT                                         ");
+        query.append("      mb.BO_NO                                 ");
+        query.append("      ,mb.BO_TITLE                             ");
+        query.append("      ,mb.BO_CONTENT                           ");
+        query.append("      ,mb.MEM_ID                               ");
+        query.append("      ,m.MEM_NAME                              ");
+        query.append("      ,TO_CHAR(mb.BO_DATE,'mm-dd' )AS BO_DATE  ");
+        query.append("FROM                                           ");
+        query.append("      MEMBERS m                                ");
+        query.append("      ,MEM_BOARDS mb                           ");
+        query.append("WHERE 1=1                                      ");
+        query.append("    AND  m.MEM_ID = mb.MEM_ID                  ");
+        query.append("  AND mb.bo_no = ?                             ");
         PreparedStatement ps = conn.prepareStatement(query.toString());
 
         int idx = 1;
-        ps.setInt(idx++, board.getBoNo());
-        ps.setString(idx++, board.getMemId());
+        ps.setInt(idx++, no);
 
         ResultSet rs = ps.executeQuery();
 
         BoardDTO result = new BoardDTO();
 
         if (rs.next()){
-            result.setBoTitle(rs.getString("b.bo_title"));
-            result.setMemName(rs.getString("m.mem_name"));
-            result.setBoDate(rs.getString("b.bo_date"));
-            result.setBoContent(rs.getString("b.bo_content"));
+            result.setBoNo(rs.getInt("BO_NO"));
+            result.setBoTitle(rs.getString("BO_TITLE"));
+            result.setBoContent(rs.getString("BO_CONTENT"));
+            result.setMemId(rs.getString("MEM_ID"));
+            result.setMemName(rs.getString("MEM_NAME"));
+            result.setBoDate(rs.getString("BO_DATE"));
+
         }
+
         ps.close();
         rs.close();
 
         return result;
 
+        // 조회수 올리는 메소드
+    } public int upViewCount(Connection conn, int no) throws SQLException {
+        StringBuffer query = new StringBuffer();
+        query.append("UPDATE                         ");
+        query.append("  mem_boards                   ");
+        query.append("SET                            ");
+        query.append("  view_count = view_count + 1  ");
+        query.append("WHERE                          ");
+        query.append("  bo_no = ?                    ");
+
+       PreparedStatement ps = conn.prepareStatement(query.toString());
+
+        int idx = 1;
+        ps.setInt(idx++, no);
+
+        int result = ps.executeUpdate();
+
+        return result;
+    }
+
+    // 글 삭제 메소드 (UPDATE)
+    public int deleteBoard(Connection conn, int no) throws SQLException {
+        StringBuffer query = new StringBuffer();
+        query.append("UPDATE                         ");
+        query.append("  mem_boards                   ");
+        query.append("SET                            ");
+        query.append("  del_yn = 'Y'                 ");
+        query.append("WHERE                          ");
+        query.append(" bo_no = ?                  ");
+
+        PreparedStatement ps = conn.prepareStatement(query.toString());
+
+        int  idx = 1;
+
+        ps.setInt(idx++,no);
+
+        int result = ps.executeUpdate();
+
+        ps.close();
+
+        return result;
     }
 
 

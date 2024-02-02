@@ -7,12 +7,14 @@ public class BoardDTO {
     private String memId;       /* 작성자 아이디(FK) */
     private String memName;     /* 작성자 닉네임 */
     private String boDate;      /* 게시글 작성일(MM-dd) */
+    private int viewCount;      /* 게시글 조회수*/
+
     // 보통 Date 타입으로 받지 않고 String 으로 그대로 받음
     // 날짜 계산을 해야한다 하면 parsing 을 이용함.
 
     public BoardDTO() {}
 
-    public BoardDTO(int boNo, String boTitle, String boContent, String memId, String memName, String boDate) {
+    public BoardDTO(int boNo, String boTitle, String boContent, String memId, String memName, String boDate, int viewCount) {
 
         this.boNo = boNo;
         this.boTitle = boTitle;
@@ -20,6 +22,8 @@ public class BoardDTO {
         this.memId = memId;
         this.memName = memName;
         this.boDate = boDate;
+        this.viewCount = viewCount;
+
     }
 
     @Override
@@ -31,6 +35,7 @@ public class BoardDTO {
                 ", memId='" + memId + '\'' +
                 ", memName='" + memName + '\'' +
                 ", boDate='" + boDate + '\'' +
+                ", viewCount='" + viewCount + '\'' +
                 '}';
     }
 
@@ -41,6 +46,15 @@ public class BoardDTO {
     public void setBoNo(int boNo) {
         this.boNo = boNo;
     }
+
+    public int getViewCount(){
+        return viewCount;
+    }
+
+    public void setViewCount(int viewCount){
+        this.viewCount = viewCount;
+    }
+
 
     public String getBoTitle() {
         return boTitle;

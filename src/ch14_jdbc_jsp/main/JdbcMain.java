@@ -1,5 +1,6 @@
 package ch14_jdbc_jsp.main;
 
+import ch12_exception.BizException;
 import ch14_jdbc_jsp.dto.BoardDTO;
 import ch14_jdbc_jsp.dto.MemberDTO;
 import ch14_jdbc_jsp.jdbc.ConnectionFactory;
@@ -56,13 +57,14 @@ public class JdbcMain {
                             System.out.println("[ " + bo.getBoNo()
                                     + " | " + bo.getBoTitle()
                                     + " | " + bo.getMemName()
-                                    + " | " + bo.getBoDate() + " ]");
+                                    + " | " + bo.getBoDate()
+                                    + " | " + bo.getViewCount() + " ]");
 
                         }
 
 
                         System.out.println("행동을 선택해주세요.");
-                        System.out.println("1. 글쓰기 | 2. 글보기 | 3. 로그아웃");
+                        System.out.println("1. 글쓰기 | 2. 글보기 | 3. 로그아웃 | 4. 글 삭제");
                         System.out.print(">>>> ");
 
                         int select = Integer.parseInt(scan.nextLine());
@@ -91,8 +93,6 @@ public class JdbcMain {
 
 
 
-
-
                         } if (select == 2){
                             // 글보기
                             // 자바 단에서 클릭은 안되니까 글번호 입력받는 방식으로
@@ -102,6 +102,10 @@ public class JdbcMain {
                             BoardDTO bo = boardService.readBoard(no);
 
                             if (bo != null){
+                                // DB에 존재하는 게시글을 선택한 것이므로
+                                // 해당 게시글의 조회수 +1 시킨다.
+                                boardService.upViewCount(no);
+
                                 System.out.println("=========================");
                                 System.out.println("제목: " + bo.getBoTitle());
                                 System.out.println("작성자: " +bo.getMemName());
@@ -121,11 +125,36 @@ public class JdbcMain {
                             break;
 
 
+                        } else if(select == 4){
+                            // todo 글 삭제
+                            // mem_boards 테이블에 delete Y/N 컬럼 추가
+                            // 삭제여부 delete_YN 값이 "Y"(삭제 O) / "N"(삭제 X)
+                            System.out.println("글 번호 입력 : ");
+                            int no = Integer.parseInt(scan.nextLine());
+
+                            // 해당 게시글의 작성자(mem_id)가
+                            // 현재 로그인한 사람의 아이디(mem_id)와 일치해야
+                            // 삭제가 되도록 하기
+
+                            BoardDTO board = boardService.readBoard(no);
+
+                            if(board != null){
+
+                                if(login.getMemId().equals(board.getMemId())){
+
+                            try {
+                                boardService.deleteBoard(no);
+                            } catch (BizException e) {
+                                System.out.println("에러페이지: 글 삭제 안됨");
+                            }
+                                }else {
+                                    System.out.println("해당 글을 삭제할 수 없습니다.");
+                                }
+
+                            }
+
+
                         }
-
-
-
-
 
 
 
