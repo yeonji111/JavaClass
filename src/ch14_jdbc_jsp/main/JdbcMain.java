@@ -142,11 +142,11 @@ public class JdbcMain {
 
                                 if(login.getMemId().equals(board.getMemId())){
 
-                            try {
-                                boardService.deleteBoard(no);
-                            } catch (BizException e) {
-                                System.out.println("에러페이지: 글 삭제 안됨");
-                            }
+                                    try {
+                                        boardService.deleteBoard(no);
+                                    } catch (BizException e) {
+                                        System.out.println("에러페이지: 글 삭제 안됨");
+                                    }
                                 }else {
                                     System.out.println("해당 글을 삭제할 수 없습니다.");
                                 }

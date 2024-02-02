@@ -164,7 +164,7 @@ public class BoardDAO {
         query.append("WHERE                          ");
         query.append("  bo_no = ?                    ");
 
-       PreparedStatement ps = conn.prepareStatement(query.toString());
+        PreparedStatement ps = conn.prepareStatement(query.toString());
 
         int idx = 1;
         ps.setInt(idx++, no);

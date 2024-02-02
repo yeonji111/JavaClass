@@ -102,7 +102,7 @@ public class BoardService {
 
         int result = 0;
         try {
-           result = dao.deleteBoard(conn,no);
+            result = dao.deleteBoard(conn,no);
             System.out.println("글 삭제 완료 !!");
         } catch (SQLException e) {
             e.printStackTrace();

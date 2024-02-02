@@ -50,21 +50,22 @@ public class FoodDB {
 
     // 게임 메소드
     public void playGame(int num) {
-        Scanner scan = new Scanner(System.in);
-        while (foodList.size() > 0) {
-            if (foodList.size() == 16) {
-                System.out.println("16강");
-            } else if (foodList.size() == 8) {
-                System.out.println("8강");
-            } else if (foodList.size() == 4) {
-                System.out.println("4강");
-            } else if (foodList.size() == 2) {
-                System.out.println("결승");
 
-            } else (foodList.size() == 1) {
-                // todo 리스트에 하나 남았을때, 남은 데이터를 출력하고 우승 메세지 띄우기
+        while (foodList.size() > 0) {
+            Scanner scan = new Scanner(System.in);
+
+            if (foodList.size() % 4 == 0) {
+                System.out.println(foodList.size() + "강");
+
+            } else if (foodList.size() == 1) {
+                // todo 리스트에 하나 남았을때, 남은 데이터를 출력하고 우승 메세지 띄우기 + 종료하기
+                System.out.println("결승");
+                System.out.println(foodList.get(0).getFoodName() + " 우승!!");
+                break;
+
             }
             for (int i = 0; i < foodList.size(); i++) {
+
                 System.out.println("1. " + foodList.get(i).getFoodName()
                         + " | " + "2. " + foodList.get(i + 1).getFoodName());
                 System.out.print(">>>  ");

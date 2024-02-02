@@ -2,9 +2,10 @@ package yeonji.worldcup;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
     /* 추가해야하는 것
-    1) 음식 리스트 보내는 클래스
-    2) 게임 돌리는 클래스 */
+    1) 음식 리스트 클래스(FoodDB)
+    2) 게임 돌리는 메소드(FoodDB.playGame) */
 
 public class FoodMain {
     public static void main(String[] args) {
@@ -14,6 +15,10 @@ public class FoodMain {
         Scanner scan = new Scanner(System.in);
 
         foodDB.playGame(16);
+
+        // 리스트를 하나씩 넣는 것도 너무 길고,
+        // 중복되는 코드들이 너무 많기 때문에 클래스와 메소드화 하기
+
 //        ArrayList<String> foodList = new ArrayList<>();
 //        foodList.add("짜장면");
 //        foodList.add("짬뽕");
