@@ -9,8 +9,6 @@ public class PokemonMain {
 
         PokemonDB foodDB = PokemonDB.getIntstnace();
 
-//        Scanner scan = new Scanner(System.in);
-
         foodDB.playGame(16);
 
 
@@ -20,6 +18,7 @@ public class PokemonMain {
 //         리스트를 하나씩 넣는 것도 너무 길고,
 //         중복되는 코드들이 너무 많기 때문에 클래스와 메소드화 하기
 //
+//        Scanner scan = new Scanner(System.in);
 //        ArrayList<String> foodList = new ArrayList<>();
 //        foodList.add("짜장면");
 //        foodList.add("짬뽕");
