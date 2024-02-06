@@ -8,9 +8,7 @@ public class BankApplication {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-
-        Account account = new Account();
-        ArrayList<Object> accountList = new ArrayList<>();
+        ArrayList<Account> accountList = new ArrayList<>();
 
         while (true) {
             System.out.println("---------------------------------------------------");
@@ -31,15 +29,10 @@ public class BankApplication {
                 System.out.print("계좌주: ");
                 String userName = scan.nextLine();
                 System.out.print("초기입금액: ");
-                String balance = scan.nextLine();
 
-                accountList.add(account.setBalance(Integer.parseInt(balance))
-                        , account.setAccountNum(accountNum)
-                        , account.setUserName(userName));
+                int balance = Integer.parseInt(scan.nextLine());
 
-                account.setBalance(Integer.parseInt(balance));
-                account.setAccountNum(accountNum);
-                account.setUserName(userName);
+                accountList.add(new Account(balance, accountNum, userName));
 
 
                 System.out.println("결과: 계좌가 생성되었습니다.");
@@ -52,15 +45,29 @@ public class BankApplication {
                 System.out.println("계좌목록");
                 System.out.println("--------");
 
-                for ()
-                System.out.println(account.getAccountNum() + account.getUserName() + account.getBalance());
+                for (int i = 0; i < accountList.size(); i++) {
+                    System.out.println(accountList.get(i).getAccountNum()
+                            + accountList.get(i).getUserName()
+                            + accountList.get(i).getBalance());
+                }
 
 
             } else if (select == 3) {
                 // 예금
+                // 계좌번호와 예금액을 입력받고 잔고 += 예금하고자 하는 금액하기
+                // 조건 ) 계좌번호가 null값이 아니라면
+                // , 리스트에 존재하는 계좌번호가 맞다면
+                int inMoney = Integer.parseInt(scan.nextLine());
+
+
 
             } else if (select == 4) {
                 // 출금
+                // 계좌번호와 예금액을 입력받고 잔고 -= 예금하고자 하는 금액하기
+                // 조건 ) 계좌번호가 null값이 아니라면
+                // , 리스트에 존재하는 계좌번호가 맞다면
+                int withdraw = Integer.parseInt(scan.nextLine()); // 인출하고자 하는 금액
+
 
             } else if (select == 5) {
                 // 종료

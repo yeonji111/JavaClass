@@ -5,26 +5,12 @@ public class Account {
     private String accountNum;  /* 계좌 번호 */
     private String userName;    /* 계좌주 */
 
-    public String getAccountNum() {
-        return accountNum;
+    public Account() {
     }
 
-    public void setAccountNum(String accountNum) {
-        this.accountNum = accountNum;
-    }
-
-    public Account(int balance, String accountNum, String userName, int balance1) {
+    public Account(int balance, String accountNum, String userName) {
         this.balance = balance;
         this.accountNum = accountNum;
-        this.userName = userName;
-        this.balance = balance1;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
         this.userName = userName;
     }
 
@@ -34,16 +20,23 @@ public class Account {
                 "balance=" + balance +
                 ", accountNum='" + accountNum + '\'' +
                 ", userName='" + userName + '\'' +
-                ", balance=" + balance +
                 '}';
     }
 
-    public Account() {
+    public String getAccountNum() {
+        return accountNum;
     }
 
-    public Account(int balance) {
-        this.balance = balance;
+    public void setAccountNum(String accountNum) {
+        this.accountNum = accountNum;
+    }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public int getBalance() {
@@ -73,6 +66,11 @@ public class Account {
 
         account.setBalance(300000);
         System.out.println("현재 잔고: " + account.getBalance());
+    }
+
+    public static Account createAccount (){
+
+        return Account;
     }
 
 }
