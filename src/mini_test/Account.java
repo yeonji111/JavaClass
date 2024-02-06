@@ -1,7 +1,7 @@
 package mini_test;
 
 public class Account {
-    private int balance;        /* 계좌 잔고 */
+    private int balance = 0;        /* 계좌 잔고 */
     private String accountNum;  /* 계좌 번호 */
     private String userName;    /* 계좌주 */
 

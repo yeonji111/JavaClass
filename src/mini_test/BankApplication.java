@@ -8,6 +8,7 @@ public class BankApplication {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
+        Account account = new Account();
         ArrayList<Account> accountList = new ArrayList<>();
 
         while (true) {
@@ -57,17 +58,25 @@ public class BankApplication {
                 // 계좌번호와 예금액을 입력받고 잔고 += 예금하고자 하는 금액하기
                 // 조건 ) 계좌번호가 null값이 아니라면
                 // , 리스트에 존재하는 계좌번호가 맞다면
+                System.out.println("\n-----------------\n");
+                System.out.println("예금");
+                System.out.println("\n-----------------\n");
+
+                System.out.println("계좌번호 >> ");
+                String inNum = scan.nextLine();
+                System.out.println("예금액 >> ");
                 int inMoney = Integer.parseInt(scan.nextLine());
-
-
-
+                System.out.println("결과: 예금이 성공되었습니다.");
             } else if (select == 4) {
-                // 출금
-                // 계좌번호와 예금액을 입력받고 잔고 -= 예금하고자 하는 금액하기
-                // 조건 ) 계좌번호가 null값이 아니라면
-                // , 리스트에 존재하는 계좌번호가 맞다면
-                int withdraw = Integer.parseInt(scan.nextLine()); // 인출하고자 하는 금액
+                System.out.println("\n-----------------\n");
+                System.out.println("출금");
+                System.out.println("\n-----------------\n");
 
+                System.out.println("계좌번호 >> ");
+                String inNum = scan.nextLine();
+                System.out.println("출금액 >> ");
+                int inMoney = Integer.parseInt(scan.nextLine());
+                System.out.println("결과: 출금이 성공되었습니다.");
 
             } else if (select == 5) {
                 // 종료
