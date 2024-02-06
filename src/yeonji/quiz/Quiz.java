@@ -1,34 +1,32 @@
 package yeonji.quiz;
 
+import java.util.ArrayList;
+
 public class Quiz {
-    private String quiz;        /* 문제 */
-    private String correct;     /* 문제 정답 */
-    private int score;          /* 문제 점수 */
+    private String quiz;                    /* 문제 */
+    private String correct;                 /* 문제 정답 */
+    private int score;                      /* 문제 점수 */
+    private String hint;   /* 문제 힌트 */
+
 
     public Quiz() {
     }
 
-    public Quiz(String quiz, String correct, int score) {
-        this.correct = correct;
+    public Quiz(String quiz, String correct, int score, String hint) {
         this.quiz = quiz;
+        this.correct = correct;
         this.score = score;
+        this.hint = hint;
     }
 
     @Override
     public String toString() {
-        return "QuizDB{" +
-                "correct='" + correct + '\'' +
-                ", quiz='" + quiz + '\'' +
+        return "Quiz{" +
+                "quiz='" + quiz + '\'' +
+                ", correct='" + correct + '\'' +
                 ", score=" + score +
+                ", hint='" + hint + '\'' +
                 '}';
-    }
-
-    public String getCorrect() {
-        return correct;
-    }
-
-    public void setCorrect(String correct) {
-        this.correct = correct;
     }
 
     public String getQuiz() {
@@ -39,6 +37,14 @@ public class Quiz {
         this.quiz = quiz;
     }
 
+    public String getCorrect() {
+        return correct;
+    }
+
+    public void setCorrect(String correct) {
+        this.correct = correct;
+    }
+
     public int getScore() {
         return score;
     }
@@ -47,7 +53,11 @@ public class Quiz {
         this.score = score;
     }
 
+    public String getHint() {
+        return hint;
+    }
 
-
-
+    public void setHint(String hint) {
+        this.hint = hint;
+    }
 }

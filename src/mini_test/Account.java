@@ -45,7 +45,7 @@ public class Account {
 
     public void setBalance(int balance) {
         if (balance >= MIN_BALANCE && balance <= MAX_BALANCE)
-        this.balance = balance;
+            this.balance = balance;
     }
 
     private static final int MIN_BALANCE = 0; // static final로 변경 불가능한 상수 선언하고 private 으로 외부 접근 제한
@@ -68,9 +68,9 @@ public class Account {
         System.out.println("현재 잔고: " + account.getBalance());
     }
 
-    public static Account createAccount (){
-
-        return Account;
-    }
-
+//    public static Account createAccount() {
+//
+////        return Account;
+//    }
 }
+
