@@ -3,6 +3,8 @@ package ch14_jdbc_jsp.dao;
 import ch14_jdbc_jsp.dto.BoardDTO;
 import ch14_jdbc_jsp.dto.MemberDTO;
 import ch14_jdbc_jsp.jdbc.ConnectionPool;
+import yeonji.submit13.QuizDTO;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

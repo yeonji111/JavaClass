@@ -6,7 +6,7 @@ public class Quiz {
     private String quiz;                    /* 문제 */
     private String correct;                 /* 문제 정답 */
     private int score;                      /* 문제 점수 */
-    private String hint;   /* 문제 힌트 */
+    private String hint;                    /* 문제 힌트 */
 
 
 

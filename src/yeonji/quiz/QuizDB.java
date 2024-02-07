@@ -27,7 +27,7 @@ public class QuizDB {
         quizList.add(new Quiz("ㅂㅌㄹ", "베테랑", 5, "어이가 없네"));
         quizList.add(new Quiz("ㅇㅂㅌ", "아바타", 5, "파란색"));
         quizList.add(new Quiz("ㄱㅇㅇㄱ", "겨울왕국", 5, "자매"));
-        quizList.add(new Quiz("ㅇㅂㅈㅅ:ㅇㄷㄱㅇ", "어벤져스: 엔드게임", 5, "치즈버거"));
+        quizList.add(new Quiz("ㅇㅂㅈㅅ:ㅇㄷㄱㅇ", "어벤져스: 엔드게임", 5, "건틀릿"));
         quizList.add(new Quiz("ㄷㄷㄷ", "도둑들", 5, "전지현"));
         quizList.add(new Quiz("ㅇㅅ", "암살", 5, "전지현"));
 
