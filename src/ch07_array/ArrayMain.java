@@ -304,10 +304,13 @@ public class ArrayMain {
         swap(numberArray[2], numberArray[3]);
         printArray(numberArray);
 
+
+        System.out.println("\n================== call by value, call by reference ============\n");
         // 가끔 면접에서 묻는 문제
         // Call by value와 Call by Reference 구분
         // 기본타입 변수에 대해서는 Call by Value로 동작
         // 참조타입 변수에 대해서는 Call by Reference로 동작
+        // 함수명에 대해서는 Call by Name으로 동작
         int a = 10;
         int b = a;
 

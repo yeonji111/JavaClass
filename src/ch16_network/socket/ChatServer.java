@@ -25,6 +25,10 @@ public class ChatServer {
             SendThread send = new SendThread(connSocket);
             send.start();
 
+            // ReceiveThread에 연결된 소켓 객체 넘겨주기
+            ReceiveThread receive = new ReceiveThread(connSocket);
+            receive.start();
+
             // 연결된 상대방의 ip 주소 확인 (클라이언트의 ip주소)
             System.out.println(connSocket.getRemoteSocketAddress());
 
