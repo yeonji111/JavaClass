@@ -91,6 +91,7 @@ public class OpenAPIMain {
         // [위산과다, 속쓰림, 위부불쾌감, 위부팽만감, 위통, 체함, 구역, 신트림]
 
 
+        // depositMethodQesitm(보관방법), useMethodQesitm(사용방법) , itemName(약품명), entpNamem(회사명), efcyQesitm(증상), itemSeq(기본키)
     }
 
     // 페이지에 대한 약품 목록을 가져오는 메소드
