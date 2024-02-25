@@ -85,7 +85,7 @@ public class CollectionMap {
         for (  Entry<String,String> entry : entrySet ){
             System.out.println(entry); // key값 = value값 출력
             System.out.println(entry.getKey()); // key값만 출력
-            System.out.println(entry.getValue()); // value값만 출력
+            System.out.println(entry.getValue()); // value값만 출력F
         }
 
 
